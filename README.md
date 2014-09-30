@@ -8,6 +8,10 @@ This repo contains a node.js project which hosts a workshop system to teach abou
 All source code can be used however you like. Just give us/me credit.
 Content belonging to OPITZ CONSULTING Deutschland GmbH (e.g. our triangle .SVG's , logo etc.) is protected by copyright and shall not be used without us agreeing to it.
 
+#### Install
+`npm install`
+
+`node server.js`
 
 #### Structure
 Under 	slides/ there are several reveal.js based slides.
