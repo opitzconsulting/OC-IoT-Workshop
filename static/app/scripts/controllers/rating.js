@@ -61,10 +61,8 @@ angular.module('IoTWorkshopWebApp')
                 //on success delete comment
                 .then(function (response) {
                     $scope.resonance.comment = "";
-
                     //hide comment field and submit box for 3 seconds and show success message
                     $scope.commentTimeout = true;
-
                     $timeout(function () {
                         //after 3 seconds show comment box again
                         $scope.commentTimeout = false;

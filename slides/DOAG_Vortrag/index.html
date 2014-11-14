@@ -1,0 +1,1973 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>IoT OC</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css"/>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+
+<div id="logo">
+    <p align="center">
+        <img src="css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
+    </p>
+</div>
+
+<div id="copyright">
+    <p align="center">
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
+    </p>
+</div>
+
+<div class="reveal">
+
+
+<div class="slides">
+
+
+<section>
+    <h2>Live Rating</h2>
+    <img src="images/qrcode_rating.svg" alt="" class="stretch"/>
+    <p><a href="goo.gl/xnTWTz">goo.gl/xnTWTz</a></p>
+</section>
+
+<section>
+    <h1>IoT Prototyp</h1>
+
+    <img src="css/imagebilder.png" alt="Imagebilder">
+
+    <p>
+        Eine Automatisierung für Gebäudebeleuchtung
+    </p>
+</section>
+
+
+<section>
+    <div style="height: 540px">
+        <div class="left-25">
+            <img src="images/Pascal.png" alt="" class="person-image"/>
+        </div>
+        <div class="right-75" style="text-align: left;">
+            <h4>Pascal Brokmeier</h4>
+
+            <p>Student der Wirtschaftsinformatik (Uni zu Köln)</p>
+
+            <p>Bereich: Software Development (seit 2011)</p>
+            <code style="font-size: 0.8em">IoT, AngularJS, Mobile, JavaEE, Spring, ...</code>
+        </div>
+    </div>
+
+    <div style="height: 540px">
+        <div class="left-25">
+            <img src="images/Dominik.png" alt="" class="person-image"/>
+        </div>
+        <div class="right-75" style="text-align: left;">
+            <h4>Dominik Bial</h4>
+
+            <p>Consultant bei OC seit Anfang 2013</p>
+
+            <p>Bereich: Service-orientierte Architekturen</p>
+            <code style="font-size: 0.8em">PM, SOA, IoT, Java EE, ...</code>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>OPITZ CONSULTING</h2>
+    <img src="images/oc_folie.png" alt="" class="stretch"/>
+</section>
+
+
+<!--============================================IoT Trend==============================================-->
+<section>
+
+
+    <section>
+        <!--<h2>Internet of Things - Trend</h2>-->
+        <h2>Internet of Things</h2>
+
+        <div class="waypoints">
+            <ul>
+                <li class="active">Trend</li>
+                <li>Kommunikation & Protokolle</li>
+                <li>Who sets the standard?</li>
+                <li>Herausforderungen & Chancen</li>
+                <li>Was können wir schon?</li>
+                <li>Prototyp</li>
+                <li>Fazit</li>
+            </ul>
+        </div>
+
+
+        <aside class="notes">
+            <ul>
+                <li>Was ist IoT. ...wow das wieder aufrollen damit wollen wir hier keinen langweilen!</li>
+                <li>Wir wollen uns eher die Entwicklung der letzten Monate ansehen und überlegen wie wir die
+                    unsichere Zukunft angehen können
+                </li>
+                <li>
+                    Wir wollten uns hier kurz fassen, um nicht direkt am Anfang Ihre aufmerksamkeit zu verlieren.
+                </li>
+                <li>
+                    Wir werden erklären wie das IoT sich entwickelt und was für Chancen und Risiken
+                    vorhanden sind.
+                </li>
+                <li>
+                    Anschließend stellen wir unseren Prototypen sowie dessen Entwicklung vor. Dabei haben wir einige
+                    Erfahrungen
+                    gemacht die wir mit Ihnen teilen möchten.
+                </li>
+                <li>
+                    Natürlich wird hier auch eine kleine Demo gegeben, hoffen wir, dass alles klappt! Abschließend
+                    wollen wir ein
+                    gemeinsames Fazit ziehen und gegebenfalls noch eine kleine Dikussionsrunde ermöglichen.
+                </li>
+
+            </ul>
+        </aside>
+    </section>
+
+    <section>
+        <h3>What Gartner says</h3>
+        <img src="images/hype_2014.png" alt="" class="stretch"/>
+
+        <div style="
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        border: 7px solid red;
+        top: 17%;
+        left: 40%;"></div>
+
+        <aside class="notes">
+            <p>Gartner und ihr Hype-Cycle für 2014 zeigen IoT auf der Spitze der überzogenen Erwartungen. Und jeder der
+                sich den Markt aktuell einmal anschaut merkt dies. ALLE reden drüber, keine Konferenz kommt ohne IoT
+                aus. Mobile Conf? IoT Day. Wjax. IoT day. OOW: IoT, ... jeder spielt mit Robotern, baut kleine Maschinen
+                usw. Dennoch hat kaum jemand konkrete laufende Projekte geschweigedenn Success Stories zu
+                vermelden. </p>
+
+            <p>Auch beachten: M2M, CEP, Big Data, Cloud</p>
+        </aside>
+    </section>
+
+    <!--<section>
+        <img src="images/Forbes_IoT_big_data.png" alt=""/>
+
+        <aside class="notes">Bezieht sich auf den Hype Cycle. Sagt ganz klar aus: Big Data kennt jeder (sogar
+            non-techies). Aber IoT hier sicherlich genauso omnipräsent (wenn nicht mehr).
+        </aside>
+    </section>-->
+
+    <!--<section>
+        <img src="images/happens_in_a_minute.png" alt=""/>
+        <aside class="notes">Das sind noch alles menschlich generierte Daten ... Warten wir ab bis die Maschinen
+            richtig
+            anfangen los zu legen reakt
+        </aside>
+    </section>-->
+
+    <section>
+        <h3>Google Trends</h3>
+        <img src="images/iot_google_trends.png" alt=""/>
+
+        <aside class="notes">
+            <p>Entwicklung der Suchanfragen. Ein einfacher Indikator dafür, wie viele Menschen ein Thema kennen und sich
+                damit auseinandersetzen. Aber sehr mit Vorsicht zu genießen, immer prüfen ob Begriffe eindeutig
+                sind!!</p>
+        </aside>
+    </section>
+
+    <section>
+        <!-- TODO hast du hier noch ein paar Slides/Bilder um das ganze zu erweitern? ein paar weitere Eyecatcher wären noch super-->
+        <h3>Evolution M2M to IoT</h3>
+        <img src="images/M2M_IoT.png" alt="" class="stretch"/>
+
+        <p class="source">http://de.slideshare.net/zdshelby/coap-tutorial</p>
+        <aside class="notes">
+            <ul>
+                <li>M2M War vor IoT da. Gibt es schon seit Jahrzehnten. Aber:</li>
+                <li>M2M: Silos spezifische Protokolle, alles sehr spezialisiert, vor allem im industriellen
+                    Kontext. Jeder hat "sein M2M" Projekt gehabt, Systeme kommunizieren nicht mit außen, sind
+                    abgeschlossen
+                </li>
+                <li>IoT + BigData: Daten werden über das Internet mittels "standardisierter" (mehr dazu später)
+                    Protokolle
+                    verschickt. BigData betreibt Analysen (über Systemgrenzen hinweg) , Things kommunizieren über das
+                    Web auch untereinander (zwischen System)
+                </li>
+
+                <li>Was ist daran so besonders? Vergleichen wir es mit Unternehmen: M2M: 2000 Stämme, aber jeder agiert
+                    nur
+                    für sich, keine Interaktion mit anderen Entitäten. IoT: freie Wirtschaft, jeder kann mit jedem in
+                    Kontakt treten und interagieren, Handeln, tauschen. Sehen Sie das Potenzial?
+                </li>
+            </ul>
+        </aside>
+    </section>
+
+</section>
+
+<!--============================================ IoT Kommunikation ==============================================-->
+
+<section>                              <!-- Kapitel ist mir zu lang oder muss im Schnelldurchlauf durch-->
+<section>
+    <!--<h3>Kommunikation im IoT</h3>-->
+    <h2>Internet of Things</h2>
+
+    <div class="waypoints">
+        <ul>
+            <li>Trend</li>
+            <li class="active">Kommunikation & Protokolle</li>
+            <li>Who sets the standard?</li>
+            <li>Herausforderungen & Chancen</li>
+            <li>Was können wir schon?</li>
+            <li>Prototyp</li>
+            <li>Fazit</li>
+        </ul>
+    </div>
+
+    <aside class="notes">
+        <p>Also IoT = M2M + freie Interaktion über Systemgrenzen hinweg. Aber wie kommunizieren die Entitäten? -->
+            Protokolle & Standards</p>
+    </aside>
+</section>
+
+
+<!--
+<section>
+    <img src="images/iot_architecture_simple.png" alt="" class="stretch"/>
+
+    <aside class="notes">
+        <p>Unsere (vereinfachte) Sicht auf das IoT. </p>
+    </aside>
+</section>
+-->
+
+<section>
+
+    <h4>Was gibt es denn so?</h4>
+    LTE Advanced Cellular 4G /
+    3G - GPS / GPRS 2G / GSM / EDGE, CDMA, EVDO
+    WEIGHTLESS WIMAX
+    LICENSE-FREE SPECTRUM DASH 7
+    TM
+    WiFi
+    IPv4 IPv6 UDP DTLS RPL Telnet MQTT DDS CoAP XMPP HTTP SOCKETS REST API
+    WAN Wide Area Network - 802.20
+    MAN Metropolitan Area Network -802.16
+    LAN Local Area Network - 802.11
+    PAN Personal Area Network - 802.15
+    BLUETOOTH UWB
+    Z-WAVE ZIGBEE
+    6LoWPAN NFC
+    ANT RFID
+    POWERLINE ETHERNET
+    PRINTE
+
+    <div class="source">Source:
+        http://harborresearch.com/are-you-prepared-for-big-changes-in-the-way-we-will-learn-work-and-innovate/
+    </div>
+
+    <aside class="notes">
+        <p>Eindeutig zu viel um alles zu erfassen</p>
+
+        <p>Das beliebte "es kommt drauf an"</p>
+
+        <p>Aber: Bei konkretem Projekt häufig reduzierung auf wenige mögliche Kandidaten &#8594; again
+            nothing new... zwischen 2-5 Dingen entscheiden halt </p>
+    </aside>
+
+</section>
+
+
+<section>
+    <p>Kann man das ganze irgendwie Strukturieren?</p>
+
+    <div class="fragment">
+        <img src="images/harbor_connectivity.png" alt="harbor ressearch infographic" class="stretch"/>
+
+        <div class="source">Source:
+            http://harborresearch.com/are-you-prepared-for-big-changes-in-the-way-we-will-learn-work-and-innovate/
+        </div>
+
+        <div style="position: absolute;
+            width: 42px;
+            height: 30px;
+            border: 5px solid red;
+            top: 79.5%;
+            left: 28%;"></div>
+
+        <div style="position: absolute;
+            width: 53px;
+            height: 30px;
+            border: 5px solid red;
+            top: 79.5%;
+            left: 46%;"></div>
+
+        <div style="position: absolute;
+            width: 39px;
+            height: 30px;
+            border: 5px solid red;
+            top: 79.5%;
+            left: 42%;"></div>
+
+    </div>
+
+
+    <aside class="notes">
+        <p>Struktur vorhanden</p>
+
+        <p>vieles schließt sich gegenseitig aus. z.B. IPv4 oder IPv6 & 433mhz comm, zigbee + wifi nah
+            beieinander (physisch problematisch</p>
+
+        <p>verschiedene Use Cases verschiedene Technologien</p>
+    </aside>
+</section>
+
+<section>
+    <h4>Protokolle, Protokolle, Protokolle</h4>
+
+    <p>Lingua Franca des IoT?</p>
+
+    <aside class="notes">
+        <p>[FRAGE] Vorschläge aus der Runde: Welche Protokolle / Technologien setzen sich durch?</p>
+
+        <p>Zigbee, IPv6LoWPan, Bluetooth, Z-Wave, HTTP, CoAP, XMPP, MQTT???</p>
+    </aside>
+</section>
+
+
+<section>
+
+    <p>MQTT, CoAP, DDS, RESTful HTTP, XMPP, ...</p>
+
+    <aside class="notes">
+        Verschiedene Protokolle. Manche besser für Sensordatensammlung (hub-spooke, primär sensor-> server), manche für
+        D2D Nachrichten (ESB auf Device Ebene), manche sehr schnell, manche sehr Leistungsstark...
+        <!-- <p>MQTT: Publish-subscribe pattern, TCP/IP, primär für Sensordatensammlung gedacht, braucht message-broker
+             (hub-spokes) (telemetry, remote monitoring) </p>
+
+         <p>CoAP kommt gleich</p>
+
+         <p>DDS: Device-Device Communication, braucht "middleware" infrastruktur, real time in microseconds, fan-out ist
+             Kernstärke, Bus-System</p>
+
+         <p>RESTful kennt man</p>
+
+         <p>XMPP: was developed for IM, gute Adressierbarkeit (vs. ipv6 ??), langsam und oft nur polling</p>-->
+    </aside>
+
+    <div class="source">
+        Sources: <a href="http://blogs.cisco.com/ioe/beyond-mqtt-a-cisco-view-on-iot-protocols/">Cisco
+        Blog</a>,
+        <a href="http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things">electronicdesign.com</a>,
+        <a href="http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php">eclipse.org</a>
+    </div>
+</section>
+
+<!--
+<section>
+    <h5>XMPP ist das bekannteste der "kleinen"</h5>
+    <img src="images/protocolls_trends_1.png" class="stretch" alt=""/>
+</section>
+
+<section>
+    <h5 style="color: darkred">HTTP ...</h5>
+    <img src="images/protocolls_trends_3.png" class="stretch" alt=""/>
+
+    <aside class="notes">
+        Aber: HTTP enorm schwergewichtig. Alternative gerade bei kleinen wireless nodes notwendig
+    </aside>
+</section>
+-->
+
+<section>
+    <h4>CoAP als Beispiel</h4>
+    <img src="images/coap_web_2_coap.png" alt=""/>
+
+    <p class="source">http://de.slideshare.net/zdshelby/coap-tutorial</p>
+
+    <aside class="notes">
+        <p>Wir wollen über CoaP sprechen, weil es viele interessante Vorteile bietet.</p>
+
+        <ul>
+            <li>UDP, RESTful, QoS auf Application Ebene</li>
+            <li>Wesentlich energieeffizienter als HTTP</li>
+            <li>Unnötige Roundtrips können vermieden werden</li>
+            <li>TLS auf Datagram Ebene</li>
+        </ul>
+    </aside>
+</section>
+
+
+<section>
+    <h5>Okay. Lightweight! Wie light?</h5>
+    <img class="fragment stretch" src="images/coap_sequence_1.png" alt=""/>
+</section>
+
+<section>
+    <img class=" stretch" src="images/coap_sequence_2.png" alt=""/>
+</section>
+
+<!--
+<section>
+    <img class=" stretch" src="images/coap_sequence_3.png" alt=""/>
+</section>
+
+<section>
+    <img class=" stretch" src="images/coap_sequence_4.png" alt=""/>
+</section>
+-->
+
+<section data-markdown>
+    <!-- geht meiner MEinung nahc shcon fast zu weit in Richtung ARchitetkur, lieber offener gestalten -->
+    <script type="text/template">
+        ### Pointé?
+
+        * Abwägen: Energieverbrauch vs. Bandbreite vs. Sendedistanz
+        * Auch als Enterprise-Entwickler: Auseinandersetzung mit M2M Technologien
+        * Für jeden Use-Case separat abwägen. Weg von "nur" HTTP/REST Knüppel
+        <!--* Backends müssen mit Berücksichtigung neuer Gegebenheiten entwickelt werden. Ggf. muss Java EE CoAP Daten entgegen nehmen-->
+
+        Note:
+
+        * Erstmal "eigenes" IoT aufbauen, dann sukzessive andere Services konsumieren & publizieren
+        * Umdenken. Weg von Standardknüppeln und alternativen evaluieren. Gerade technisch muss "tiefer" gedacht werden
+
+    </script>
+</section>
+</section>
+
+<!--Retrospektive IoT Trends & Kommunikationstechnologie-->
+<section>
+
+<section>
+    <!--<h3>Who sets the standard?</h3>-->
+    <h2>Internet of Things</h2>
+
+    <div class="waypoints">
+        <ul>
+            <li>Trend</li>
+            <li>Kommunikation & Protokolle</li>
+            <li class="active">Who sets the standard?</li>
+            <li>Herausforderungen & Chancen</li>
+            <li>Was können wir schon?</li>
+            <li>Prototyp</li>
+            <li>Fazit</li>
+        </ul>
+    </div>
+
+</section>
+
+<section>
+    <h3>Einige wenige</h3>
+
+    <p>Open Automotive Alliance, VITAL, RERUM,CITY PULSE, IoT-I, SPRINT, Apple Smart Home Kit, Cargo2000, OpenIoT,
+        IoT@Work, INDISPUTABLE KEY, PRIME</p>
+</section>
+
+<section>
+<!--lots of names-->
+<p style="font-size: 0.35em">Audi
+GM
+<strong style="font-size: 2em">Google</strong>
+<strong style="font-size: 2em">Honda</strong>
+Hyndai
+<strong style="font-size: 2em">Nvidia </strong>
+National <span style="color: red">Universit</span>y of Ireland 
+INRIA 
+Reply Santers 
+SingularLogic
+Atos
+Athes Information Technolgy
+Images & Co
+Camden Twon Unlimited
+Technische <span style="color: red">Universit</span>ät Istanbul 
+Stadt Istanbul
+Eurescom
+Atos
+<strong style="font-size: 2em">Siemens</strong>
+<span style="color: red">Universit</span>y of Bristol 
+Linköping <span style="color: red">Universit</span>y 
+<span style="color: red">Universit</span>ät Passau
+zolertia 
+FORTH
+cyta
+Stadt Tarragona
+Stadt Heraklion 
+<span style="color: red">Universit</span>y of Surrey 
+Alexandra <span style="color: red">Institut</span>e 
+<strong style="font-size: 2em">Ericsson</strong>
+Siemens 
+National <span style="color: red">Universit</span>y of Ireland 
+Hochschule Osnabrück 
+Stadt Brasov 
+Stast Aarhus 
+<span style="color: red">Wright State <span style="color: red">Universit</span>y </span>
+ISMB 
+<strong style="font-size: 2em">Frauenhofer</strong> IIT 
+Cnet 
+Injet 
+Telecom Italia 
+Stadt Torino
+Alexandria <span style="color: red">Institut</span>e
+<span style="color: red">Universit</span>ät Duisburg-Essen 
+Easy Global Market 
+SINTEF 
+GNKS 
+<strong style="font-size: 2em">Telefonica</strong> 
+NEC Europe 
+SAP
+<span style="color: red">Universit</span>ät Lübeck 
+CEA 
+Alcatel Lucent 
+VDI IT 
+Thales Research & Technology 
+<span style="color: red">Universit</span>ät St Gallen 
+Alexandria <span style="color: red">Institut</span>e 
+<span style="color: red">Universit</span>ät Zürich 
+Telenor Asa 
+<span style="color: red">Universit</span>ät Melbourne 
+Hitachi Europe 
+VDI/VDE INNOVATION + TECHNIK GMBH
+HITACHI EUROPE LIMITED
+NXP SEMICONDUCTORS GERMANY GMBH
+SIEMENS AG
+UNIVERSITAT ST GALLEN
+SAP AG
+UNIVERSITY OF SURREY
+FRAUNHOFER-GESELLSCHAFT ZUR
+FOERDERUNG DER ANGEWANDTEN FORSCHUNG E.V
+COMMISSARIAT A L ENERGIE ATOMIQUE ET AUX
+ENERGIES ALTERNATIVES
+NEC EUROPE LTD
+NXP SEMICONDUCTORS BELGIUM NV
+IBM RESEARCH GMBH
+UNIVERSITA DEGLI STUDI DI ROMA LA SAPIENZA
+CONSORZIO FERRARA RICERCHE
+CREATIVE SYSTEMS ENGINEERING (C.S.E)
+MONOPROSOPI EPE
+JULIUS-MAXIMILIANS UNIVERSITAET WUERZBURG
+ALCATEL - LUCENT BELL LABS FRANCE
+ALCATEL-LUCENT BELL NV
+TEKNOLOGIAN TUTKIMUSKESKUS VTT
+Frauenhofer FIT 
+Cnet 
+<strong style="font-size: 2em">SAP</strong> 
+COMAU 
+<span style="color: red">Universit</span>ät Kosice 
+ISMB 
+tnm 
+Injet 
+Intersoft 
+THE UNIVERSITY OF READING
+FONDAZIONE CENTRO SAN RAFFAELE DEL MONTE TABOR
+VU LOG SAS
+ASSOCIATION FONDATION INTERNET NOUVELLE GENERATION A.F.I.N.G
+COLLABORATIVE ENGINEERING S.R.L.
+INSTITUT NATIONAL DE RECHERCHE EN INFORMATIQUE ET EN AUTOMATIQUE
+THE UNIVERSITY OF NOTTINGHAM
+BIBA - BREMER INSTITUT FUER PRODUKTION UND LOGISTIK GMBH
+Advanced Laboratory on Embedded Systems S.r.l.
+EADS Innovation Works UK
+Elvior
+Fraunhofer FOKUS
+IBM Israel - Science and Technology LTD
+Israel Aerospace Industries LTD
+Wolfram MathCore AB
+Sintef 
+Vlastuin 
+Hospital San Juan de Dios 
+Cordys 
+Induct 
+IC Focus 
+Aalborg <span style="color: red">Universit</span>y 
+iDevices
+iHome
+OSRAM
+CREE
+CHAMBERLAIN
+Marvell
+Skybell
+august
+Honeywell
+Haier
+Schlage
+Philips
+Kwikset
+Broadcom
+netatmo
+Withings
+Swiss World Cargo  
+DB Schenker 
+Lufthsnasa Cargo  
+cargolux 
+descartes 
+cargo community network 
+panalpina 
+riege software 
+unisys
+ibs 
+turkish cargo 
+etihad cargo 
+Air Canada Cargo
+Lei Wageningen 
+TNO
+ATB
+CentMA
+Atos
+ariadna
+MTT
+KTBL
+<span style="color: red">Universit</span>y of Athens 
+Polizecncia 
+Aston <span style="color: red">Universit</span>y 
+VTT
+John Deere 
+EHI Retail <span style="color: red">Institut</span>e 
+GS1
+SGS
+Bonpreu 
+<span style="color: red">Universit</span>y of Ireland 
+RESEARCH AND EDUCATION LABORATORY IN INFORMATION TECHNOLOGIES - AIT
+ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE - EPFL
+FRAUNHOFER-GESELLSCHAFT ZUR FOERDERUNG DER ANGEWANDTEN FORSCHUNG E.V - IOSB
+ELECTRONIC SYSTEMS AND SOFTWARE APPLLICATIONS S.A. - SENSAP SA
+ACROSSLIMITS - AL
+COMMONWEALTH SCIENTIFIC AND INDUSTRIAL RESEARCH ORGANISATION - CSIRO
+<span style="color: red">Universit</span>y of Zagreb Faculty of Electrical Engineering and Computing - UNIZG-FER
+<span style="color: red">Universit</span>ät Duisburg-Essen
+ETRA Investigacion y Desarrollo
+Aristech
+National <span style="color: red">Universit</span>y of Ireland, Galway  
+The Open <span style="color: red">Universit</span>y
+Empresa Municipal de Transportes de Madrid
+Alcatel Lucent 
+Atos Origin 
+Fiat Group
+Siemens 
+software ag 
+Telecom Italia 
+Thales 
+Zigpos
+Ambient Systems
+Arago Systems
+Innotec 21
+M3S
+Trilogis
+CREATE-NET
+KAIST 
+TUDelft
+Joint Research Centre (JRC Ispra)
+Applied Scientific Research (TNO) 
+Centre for Communications Systems Research (CCSR) 
+UPRC 
+VTT Technical Research Centre
+Wuxi SensingNet Industrialization Research institute
+Siemens 
+Microsoft Research 
+Fiat Research Centre 
+TXT e Solutions 
+City <span style="color: red">Universit</span>y London 
+inIT - <span style="color: red">Institut</span> Industrial IT
+inno 
+Ericsson 
+Telecom Italia 
+gemalto 
+CEA 
+CWC 
+FB consulting 
+<span style="color: red">Universit</span>y of Luxembourg 
+K. U. Leuven 
+TST 
+Jacobs <span style="color: red">Universit</span>y 
+ZIGPOS 
+MAYA Technologies 
+Banco Santander 
+Santander City Council 
+Tecnalia 
+<span style="color: red">Universit</span>y of Surrey 
+Alexandra <span style="color: red">Institut</span>e 
+ATOS 
+NICT 
+Portugal Telecom 
+Siemens 
+<span style="color: red">Universit</span>y of Applied Sciences Osnabrueck 
+<span style="color: red">Universit</span>y College of London(UK)
+<span style="color: red">Universit</span>y of Murcia(Spain)
+Vienna <span style="color: red">Universit</span>y of Technology (Austria)
+<span style="color: red">Universit</span>y of Applied Sciences Western Switzerland (Switzerland)
+Luxembourg <span style="color: red">Universit</span>y (UL)
+KAIST (Korea)
+Mandat International (Switzerland)
+Ericsson(Serbia)
+RunMyProcess(France)
+SAP (Germany)
+Philips Lighting (Netherland)
+Somfy(France)
+Permasteelisa(Italy)
+CIAT(France)
+ST Microelectronic (Italy)
+Cisco (Netherland)
+ETSI(France)
+Sensinode(Finland)
+ATB - <span style="color: red">Institut</span> für angewandte Systemtechnik Bremen GmbH
+DERI - National <span style="color: red">Universit</span>y of Ireland, Digital Enterprise Research <span
+        style="color: red">Institut</span>e
+CARSA - Consultores de Automatizacion y Robotica, S.A.
+TelefÃ³nica InvestigaciÃ³n y Desarrollo Sociedad AnÃ³nima Unipersonal
+PRO DV Software AG
+SoftrÃ³nica S.A
+TRIMEK S.A.
+SidhÃ©n Teo
+Euro Coach Builders
+Brüggen Oberflächen- und Systemlieferant GmbH
+OAS AG
+TNS Sp.z.o.o.
+European Commission - DG Information Society and Media
+UNINOVA - <span style="color: red">Institut</span>e for the Development of New Technologies
+Centre for Global Innovation Management
+College of Law and Business
+Aalborg <span style="color: red">Universit</span>y (Coordinator)
+INRIA
+<span style="color: red">Universit</span>é Joseph Fourrier
+Open Source Innovation Ltd
+UEAPME European Office of Crafts, Trades and SMEs for Standardisation
+SENS@P
+Pole Traceability Valence
+<span style="color: red">Institut</span>o Telecomunicações
+ATB <span style="color: red">Institut</span> für Angewandte System Technik, Bremen, Germany  
+Rheinische Friedrich-Wilhelms-<span style="color: red">Universit</span>ät Bonn Bonn, Germany
+<span style="color: red">Institut</span>o de Desenvolvimento de Novas Tecnologias Lisbon, Portugal
+The Open Group Reading, UK
+European Telecommunications Standards <span style="color: red">Institut</span>e Sophia-Antipolis, France
+TraceTracker Heddesheim, Germany
+TeleServ a.s.b.l. Luxembourg
+Euro Pool System International
+B.V. Leidschendam, The Netherlands
+Confédération de l’Artisanat et des Petites Entreprises du Bâtiment Paris, Franc
+ARDACO
+AT&S
+ATMEL
+<strong style="font-size: 2em">BOSCH</strong>
+bumar
+Continental
+gemalto
+ela
+EPCOS
+FICOBA
+FIAT
+infineon
+Marelli
+Metro Group
+EADS
+ST
+Frauenhofer
+NetHowk
+Schneider Electronics 
+THALES
+Siemens 
+vermon 
+VDIVDE|IT
+Dräger
+imec
+SAGEM
+Genesis Red 
+MIRA 
+Alcatel Lucent 
+ollvetti
+Pirelli
+CEA
+RADWAR
+VTI
+VIT
+Volgswagen 
+Insiel - Informatica per il Sistema degli Enti Locali SpA Insiel Italy
+VTT - Technical Research Centre of Finland VTT Finland
+VIU - Venice International <span style="color: red">Universit</span>y - TeDIS Center, TLSU VIU Italy
+Telit Communications S.p.A. Telit Italy
+BIBA BIBA Germany
+Singular Logic - Information Systems & Applications SA Singular Logic Greece
+TREDIT - Dievropaiki Etairia Symboulon Metaforon Anaptixis Kai Pliroforikis Ae TREDIT Greece
+Enicma - ENvision and Interactive Collaboration in information and MAterial supplies -GmbH Enicma Germany
+CeTIM - Center for Technology and Innovation Management CeTIM Germany
+Logica Logica Netherlands
+Oracle-Poland Oracle Poland
+JSI - Jozef Stefan <span style="color: red">Institut</span>e JSI Slovenia
+FHV - <span style="color: red">Universit</span>y of Applied Sciences Vorarlberg FHV Austria
+CAEN RFID srl CAEN Italy
+Port Authority of Trieste PAT Italy
+SDAG Gorizia SDAG Italy
+Gebrüder Weiss Holding AG Gebrüder Austria
+SeaRail EEIG SeaRail Finland
+KUEHNE+NAGEL KUEHNE+NAGEL Greece
+AKARPORT - Akarnaniko Kentro Syndyasmenon Systimaton Metaforon Anonymos Eteria AKARPORT Greece
+Omega Omega Romania
+Safilo
+SCRA
+KUEHNE+NAGEL
+LEIA
+Nothingham <span style="color: red">Universit</span>y 
+Barilla 
+Siemens 
+BMW
+COMAU
+CEN
+RWTH Aachen
+Hilti
+VDMA
+Daimler
+THALES
+UFRGS
+Clariant 
+IPTS
+aps
+Holcim
+fatronic
+NTN_U
+BWI Zürich
+KAIST
+CLEMSON
+SAP
+Senai
+Bombardier Transportation
+SP Technical Research <span style="color: red">Institut</span>e of Sweden SE 
+Association Forêt Cellulose FR 
+Royal <span style="color: red">Institut</span>e of Technology SE 
+Centre Technique du Bois et de l’Ameublement FR 
+CIRIS Engineering FR 
+IVL Swedish Environmental Research <span style="color: red">Institut</span>e SE 
+Rottne Industri AB SE 
+Technical Research Centre of Finland FI 
+TietoEnator Forest & Energy Oy FI 
+Confidex Ltd. FI 
+Idesco Oy FI 
+Tampere <span style="color: red">Universit</span>y of Technology FI 
+Lappeenranta <span style="color: red">Universit</span>y of Technology FI 
+Tallinn <span style="color: red">Universit</span>y of Technology EE 
+Oskando OÜ EE 
+AS Hekotek EE 
+Skog-Data AS NO 
+Norwegian Forest Research <span style="color: red">Institut</span>e NO 
+Norsk Treteknisk <span style="color: red">Institut</span>t NO 
+Forestry Research <span style="color: red">Institut</span>e of Sweden SE 
+Sveaskog Förvaltnings AB SE 
+Ducerf Scierie FR 
+Raunion Saha Oy FI 
+Eidskog-Stangeskovene AS NO 
+Scanpole AS NO 
+Etablissements Pierre Mauchamp S.A. FR 
+SETRA Group SE 
+Norsjöfönster AB SE 
+Rolpin
+IBM Research GmbH CH
+Unabhängiges Landeszentrum für Datenschutz DE
+Technische <span style="color: red">Universit</span>ät Dresden DE
+Karlstads <span style="color: red">Universit</span>et SE
+<span style="color: red">Universit</span>à degli Studi di Milano IT
+Johann Wolfgang Goethe-<span style="color: red">Universit</span>ät Frankfurt am Main DE
+Tilburg <span style="color: red">Universit</span>y NL
+World Wide Web Consortium W3C/ERCIM FR
+Katholieke <span style="color: red">Universit</span>eit Leuven BE
+<span style="color: red">Universit</span>à degli Studi di Bergamo IT
+Giesecke & Devrient GmbH DE
+Center for Usability Research & Engineering AT
+Europäisches Microsoft Innovations Center GmbH DE
+SAP AG
+Brown <span style="color: red">Universit</span>y US
+
+IBM Belgium
+Karlstads <span style="color: red">Universit</span>et Karlstads <span style="color: red">Universit</span>et
+<span style="color: red">Universit</span>eit van Tilburg<span style="color: red">Universit</span>eit van Tilburg
+IBM IBM Zürich Research Laboratory
+Hewlett-PackardHewlett-Packard
+Technische <span style="color: red">Universit</span>ät Dresden 
+<span style="color: red">Institut</span> EURECOM
+T-Mobile 
+Johann Wolfgang Goethe-<span style="color: red">Universit</span>ät Johann Wolfgang Goethe-<span style="color: red">Universit</span>ät
+Frankfurt am Main
+TU Dresden Technische <span style="color: red">Universit</span>ät Dresden
+Deutsche Lufthansa
+Karlstads <span style="color: red">Universit</span>et Karlstads <span style="color: red">Universit</span>et 
+TU Dresden Technische <span style="color: red">Universit</span>ät Dresden
+Hewlett-Packard 
+IBM Zürich Research Laboratory 
+TU Dresden Technische <span style="color: red">Universit</span>ät Dresden
+ULDUnabhängiges Landeszentrum für Datenschutz
+Hewlett-Packard Hewlett-Packard
+Credentials and Cryptology Research
+IBM Zürich Research Laboratory
+Katholieke <span style="color: red">Universit</span>eit LeuvenKatholieke <span style="color: red">Universit</span>eit
+Leuven 
+Chaum LLCChaum LLC
+Joint Research Centre Ispra Joint Research Centre Ispra
+Protocols and Authorisation Models Research
+<span style="color: red">Universit</span>à di Milano
+LAAS-CNRSLAAS-CNRS (Centre National de la Recherche Scientifique)
+Anonymity and Communication Infrastructure Research
+RWTH Aachen RWTH Aachen
+Unabhängiges Landeszentrum für Datenschutz
+Erasmus <span style="color: red">Universit</span>y Erasmus <span style="color: red">Universit</span>y Rotterdam
+<span style="color: red">Universit</span>eit van Tilburg
+TU Dresden Technische <span style="color: red">Universit</span>ät Dresden
+<span style="color: red">Universit</span>y of Veterinary Medicine Vienna, Austria
+Federal <span style="color: red">Institut</span>e for Risk Assessment, Germany
+<span style="color: red">Institut</span>e of Food Research Norwich, UK
+Agricultural <span style="color: red">Universit</span>y of Athens, Greece
+Teagasc Moorepark Food Research Centre, Fermoy, Co. Cork, Ireland
+<span style="color: red">Universit</span>y of Burgos, Spain
+Veterinary Research <span style="color: red">Institut</span>e Brno, Czech Republic
+<span style="color: red">Universit</span>y of Ljubliana, Slovenia
+Veterinary Medical <span style="color: red">Institut</span>e of the Hungarian Academy of Sciences, Budapest, Hungary
+Výskumný ústav potravinársky, Slovak Republic
+<span style="color: red">Universit</span>y Dunarea de Jos Galati, Romania
+Kalite Sistem Laboratuarlar Grubu, Turkey
+RTD Services, Austria
+<span style="color: red">Universit</span>y of Zagreb, Croatia
+Austrian Agency for Health and Food Safety, Austria
+Food Safety Authority, Ireland
+Hellenic Food Authority, Greece
+Turkish Food Safety Authority, Turkey
+National Sanitary Veterinary and Food Safety Authority, Rumania
+Public Health Authority of the Slovak Republic
+https://www.rwe.com/web/cms/en/367954/rwe/innovation/projects-technologies/power-and-gas-grids/smartgrids/
+http://www.sap.com/pc/tech/internet-of-things.html
+Dr. Achatz 
+<strong>NEST
+    ARM
+    Samsung</strong>
+ABB Automation GmbH, Friedberg
+AEB GmbH, Stuttgart
+ARCADIS Deutschland GmbH, Darmstadt
+Aviainform GmbH, Frankfurt a. Main
+Bayer MaterialScience AG, Leverkusen
+Bilstein GmbH & Co. KG, Hagen
+Capgemini Deutschland Holding GmbH
+CHEP Deutschland GmbH, Köln
+Clariant Produkte (Deutschland) GmbH
+Continental Reifen Deutschland GmbH, Hannover
+Dachser GmbH & Co. KG, Kempten im Allgäu
+Daimler AG, Stuttgart
+Deutsche Bahn AG, Frankfurt a. Main
+Deutsche Post AG, Bonn
+Deutsche Telekom AG, Bonn
+Dorma Holding GmbH & Co. KGaA, Ennepetal
+Dortmunder Hafen AG, Dortmund
+Duisburger Hafen AG, Duisburg
+Fiege Deutschland Stiftung & Co. KG, Greven
+Frankfurter Allgemeine Zeitung GmbH, Frankfurt a. Main
+Fraport AG, Frankfurt a. Main
+Gebrüder Weiss Gesellschaft m.b.H., Lauterach
+Goodman Germany GmbH, Düsseldorf
+Großewinkelmann GmbH & Co. KG, Rietberg-Varensell
+GS1 Germany GmbH, Köln
+Infineon Technologies AG, Neubiberg
+InfraServ GmbH & Co. Knapsack KG, Hürth
+Interseroh Dienstleistungs GmbH, Köln
+Intertek Holding Deutschland GmbH, Leinfelden-Echterdingen
+Kühne + Nagel (AG & Co.) KG, Duisburg
+Landgard Blumen und Pflanzen GmbH, Herongen
+Lekkerland Deutschland GmbH & Co. KG, Frechen
+Logwin Solutions Deutschland GmbH, Köln
+Lufthansa Cargo AG, Frankfurt a. Main
+McKinsey & Company Inc., Düsseldorf
+METRO Group Logistics Warehousing GmbH & Co. KG, Sarstedt
+MLOG Logistics GmbH, Neuenstadt am Kocher
+neckermann.de GmbH, Frankfurt a. Main
+Orga Systems GmbH, Paderborn
+Panopa Logistik GmbH, Duisburg
+REWE-Informations-Systeme GmbH, Köln
+REWE-Zentralfinanz eG, Köln
+Rhein-Main-Verkehrsverbund GmbH, Hofheim am Taunus
+Rhenus AG & Co. KG, Holzwickede
+Salzgitter AG, Salzgitter
+Sandoz International GmbH, Holzkirchen
+Sanicare Apotheke, Bad Laer
+Schenker Deutschland AG, Duisburg
+Schmidt-Gevelsberg GmbH, Schwelm
+SchoellerArcaSystems GmbH, Schwerin
+Seacon Logistics Deutschland GmbH, Duisburg
+SEW-EURODRIVE GmbH & Co KG, Bruchsal
+Siemens AG, Konstanz
+Simon Hegele Gesellschaft für Logistik und Service mbH, Karlsruhe
+Sonepar Deutschland Region West GmbH, Holzwickede
+Still GmbH
+ThyssenKrupp Xervon GmbH, Köln
+TÜV Rheinland InterTraffic GmbH, Köln
+United Parcel Service Deutschland Inc & Co. OHG, Neuss
+Vallourec & Mannesmann Deutschland GmbH, Düsseldorf
+Vanderlande Industries GmbH, Mönchengladbach
+Vattenfall Europe AG, Berlin
+Volkswagen AG, Wolfsburg
+ABI Research 
+Accenture 
+ADCET 
+Aditium 
+Alloy 
+ams 
+AT&T 
+Avea 
+Axeda 
+Bosch Software Innovations 
+Bull 
+CEA Grenoble 
+CEA LETI 
+Cisco 
+Com4Innov 
+Deutsche Telekom 
+Eclipse Foundation 
+Ericsson 
+ESMIG 
+Essence 
+Eurotech 
+Fraunhofer FOKUS 
+French Ministry of Economy 
+Finances and Industry 
+Gemalto 
+GlobalPlatform 
+GPS Business News 
+IBB Consulting 
+IERC - EU Commission 
+IHS 
+Industrial Internet Consortium 
+Infineon 
+Infotech Enterprises 
+<span style="color: red">Institut</span>e of Communication and Computer Systems 
+Intercede 
+Kore 
+LGI Consulting 
+LocalSocial 
+m2ocity 
+Machina Research 
+Ministry of Telecommunications & Information Technology 
+Mücke 
+Sturm & Company 
+NFC Forum 
+NXP Semiconductors 
+OBD Experts 
+Oberthur Technologies 
+Orange 
+PragmaDev 
+PTC/ThingWorx 
+Scandit 
+SCS Cluster 
+Sequans Communications 
+Sierra Wireless 
+Sigfox
+Silver Spring Networks
+SIMalliance 
+Sogeti High Tech 
+Store Electronics System 
+Transatel 
+TÜV Informationstechnik 
+VEADISTA 
+Wind River 
+Wyconn</p>
+</section>
+
+<!--
+<section>
+    <p>[...]The flagships of these efforts are semiconductor companies — Intel, Qualcomm, and Samsung are the three
+        biggest —
+        with the prospect of selling billions [...] lurking just below the surface are
+        Internet companies like Google, [...] Apple, [...]</p>
+
+    [...]
+    <p>The largest of the new
+        groups is the AllSeen Alliance [...] It is now an open source project managed by the Linux
+        Foundation, but its core technology is based on Qualcomm’s AllJoyn framework [...]</p>
+</section>
+-->
+
+<section>
+    <strong>"The Internet itself has flourished by hewing to common standards…Eventually, the Internet of Things will,
+        too."</strong>
+
+    <br/> <span class="source">(Peter Lewis : <a
+        href="http://radar.oreilly.com/2014/09/in-pursuit-of-universal-iot-standards.html">http://radar.oreilly.com/2014/09/in-pursuit-of-universal-iot-standards.html</a>) </span>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        Aber was tun bis sich alle geeinigt haben? Wer wartet verliert...
+        <!--* es braucht eine Architektur, welche sich ständig ändernde Protokolle, Kommunikationswege und API's verkraften kann-->
+    </script>
+</section>
+
+<!--
+<section data-markdown>
+    <script type="text/template">
+        * Alle Dinge müssen verwaltet werden. Was mit wem wie kommuniziert, Schnittstellen, Protokolle, Technologien, ...
+
+    </script>
+</section>
+-->
+
+
+<!--TODO ins Fazit-->
+<!--<section data-markdown>
+    <script type="text/template">
+        ### Pointé?
+
+        * Sehr viele (Big) Player versuchen sich durchzusetzen
+        * Gerade in dieser frühen Phase: Offene Protokolle nutzen, flexibel bleiben
+        * Aber: Einfach warten bis sich alles "einjustiert" vielleicht vertane Chancen
+
+
+        Note:
+
+        * Alles noch am "einwackeln", Erinnerung an früher: HD-DVD vs. Blu-Ray, Gleichstrom vs. Wechselstrom (Edison vs Westinghouse), Internet Standards (TCP/IP vs. 3+ Share, AppleTalk,  ...)
+        * flexibel bleiben als Kernanforderung an Projekt: Technologien auswählen, Ausweichalternativen identifizieren.
+        * Gerade oben auf der Hypekurve -> Bis alle Projekte mit geringem Risiko moderaten Nutzen abwerfen dauert noch
+        * ABER: wenn im eigenen Unternehmen Nutzen von IoT besonders offensichtlich ist nicht warten. Planung der Architektur & Projekt muss aktuelle Situation mit einbeziehen und darauf eingehen &ndash;&gt; agil, flexibel denken!
+
+        </script>
+    </section>-->
+
+
+</section>
+
+<!--============================================ Herausforderungen ==============================================-->
+<section> <!-- Als Fazit und Überleitung-->
+    <section>
+        <!--<h3>Herausforderungen</h3>-->
+        <h2>Internet of Things</h2>
+
+        <div class="waypoints">
+            <ul>
+                <li>Trend</li>
+                <li>Kommunikation & Protokolle</li>
+                <li>Who sets the standard?</li>
+                <li class="active">Herausforderungen & Chancen</li>
+                <li>Was können wir schon?</li>
+                <li>Prototyp</li>
+                <li>Fazit</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <img src="images/TrendZurVernetzung.PNG" alt="" class="stretch"/>
+    </section>
+    <section>
+        <img src="images/Informationsflut.PNG" alt="" class="stretch"/>
+    </section>
+    <section>
+        <img src="images/InfoCharacter.PNG" alt="" class="stretch"/>
+    </section>
+    <section>
+        <img src="images/Unternehmen.PNG" alt="" class="stretch"/>
+    </section>
+
+
+    <!--============================================Überleitung zum Prototyp ==============================================-->
+
+    <!--Dominik-->
+    <section>
+        <h3>Warum das Ganze?</h3>
+    </section>
+
+    <section>
+        <img src="images/Hackathorn.PNG" alt="" class="stretch"/>
+    </section>
+
+    <section>
+        <h3>Komunikation zwischen Dingen bereits vorhanden</h3>
+        <img src="images/netzwerk_dinge.png" alt="" style="width: 60%;"/>
+    </section>
+
+
+</section>
+
+
+<section>
+    <section>
+        <!--<h2>Was können wir bereits?</h2>-->
+        <h2>Internet of Things</h2>
+
+        <div class="waypoints">
+            <ul>
+                <li>Trend</li>
+                <li>Kommunikation & Protokolle</li>
+                <li>Who sets the standard?</li>
+                <li>Herausforderungen & Chancen</li>
+                <li class="active">Was können wir schon?</li>
+                <li>Prototyp</li>
+                <li>Fazit</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section>
+        <div class="fragment">
+            <p style="font-size: 3em; position: absolute; left: 0%; top: 70%; color: green;">&#10003;</p>
+
+            <p style="font-size: 3em; position: absolute; left: 0%; top: 20%; color: red;">&#10007;</p>
+        </div>
+
+        <img src="images/mapping_architecture_skills.png" alt=""/>
+
+        <aside class="notes">
+            <ul>
+                <li>Wir können alle Technologien aus dem Backend abdecken mit unseren Erfahrungen aus vergangenen
+                    Trends.
+                </li>
+                <li>Big Data als Analysewerkzeuge, Event Processing & BPM um Regeln und Prozesse zu erstellen, (No)SQL
+                    für Datenbanken
+                </li>
+                <li>unsere Erfahrungen aus dem mobile Umfeld für Device Management (wenn wir es etwas erweitern, mehr
+                    dazu ggf. später nach dem Fazit als Zusatz)
+                </li>
+                <li>Uns fehlt wissen "im Feld", also über die devices und deren Verhalten selber. Hier hilft aber
+                    experimentieren
+                </li>
+            </ul>
+        </aside>
+    </section>
+
+    <section>
+        <h2>SOA Grundlagen</h2>
+        <img src="images/SOA.PNG" alt="" class="stretch"/>
+    </section>
+
+    <section>
+        <h2>Die Geschäftsprozesse</h2>
+        <img src="images/BPM.PNG" alt="" class="stretch"/>
+    </section>
+
+    <!--<section>
+        <h2>Verstehen und Lernen</h2>
+        <ul>
+            <li>Lesen</li>
+            <li>Entwickeln</li>
+            <li>Ausprobieren</li>
+            <li>Konzipieren</li>
+        </ul>
+        <h3>&#8594; Prototyp</h3>
+    </section>-->
+</section>
+
+
+<!--============================================IoT Prototyp ==============================================-->
+<section>
+<section>
+    <!--<h2>Prototyp</h2>-->
+    <h2>Internet of Things</h2>
+
+    <div class="waypoints">
+        <ul>
+            <li>Trend</li>
+            <li>Kommunikation & Protokolle</li>
+            <li>Who sets the standard?</li>
+            <li>Herausforderungen & Chancen</li>
+            <li>Was können wir schon?</li>
+            <li class="active">Prototyp</li>
+            <li>Fazit</li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section data-markdown>
+    <script type="text/template">
+        ### Idee (ursprünglich)
+
+        * Automatisierung der Beleuchtung in Studenten WG's
+        * Speziell Licht in Gemeinschaftsräumen sowie privaten Räumen anhand von Events ein/ausschalten
+        * Events in Form von Bewohner kommt an / verlässt das Gebäude
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### Konzept
+
+        * Erkennung von Smartphones im WLAN
+        * Zuordnung von Smartphones zu Benutzern
+        * Zuordnung von Geräten zu Benutzern
+        * Schaltung der Geräte in Abhängigkeit von vorgegeben Regeln (z.B. Benutzerpräsenz, Wetter, Uhrzeit, ...)
+    </script>
+</section>
+
+<!--
+<section data-markdown>
+    <script type="text/template">
+        ### Beispiel
+
+        * Lichter im Gemeinschaftsräumen & privaten Räumen im System integriert
+        * Person A ist im Gebäude &#8594; Gemeinschaftsraum ist beleuchtet
+        * Person B betritt Gebäude &#8594; Zimmer Person B wird eingeschaltet
+        * Personen A & B verlassen gemeinsam das Gebäude &#8594; Gemeinschaftsraum, Zimmer A & B wird nicht mehr
+        beleuchtet
+        * Person A kommt zurück, es ist 12:00 Mittag und hell &#8594; Lichter bleiben ausgeschaltet
+    </script>
+</section>
+-->
+
+
+<section>
+    <h2>Architekturübersicht</h2>
+
+    <a href="images/architecture.png" target="_blank"><img src="images/architecture.png"
+                                                           alt="prototype architecture"/></a>
+
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### Native Stack
+
+        * GPIO 433MHz Modul zum versenden von Signalen
+        * **wiringPi:** Eine C library zur einfacheren Kontrolle der GPIO Pins
+        * **rc-switch:** Eine C library für Arduinos adaptiert auf Pi's zum senden (und empfangen) von 433mhz
+        Signalen via GPIO
+    </script>
+</section>
+
+<section data-markdown data-state="alert">
+    <script type="text/template">
+        #### Beschränkungen
+
+        * Enorm primitives Protokoll
+        * Keinerlei Fehlerkorrektur, keine bidirektionale Kommunikation
+        * Entweder das Signal kommt an oder nicht, keine Kontrollmöglichkeit
+
+    </script>
+</section>
+
+
+<section data-markdown>
+    <script type="text/template">
+        * ABER: Da so primitiv, durch starke Signalstärke Sicherstellung, dass Signale ankommen
+        * 433 MHz mit geringer Energie große Reichweite (aber geringer Datendurchsatz), Wände somit weniger
+        Problembereitend als bei WLan
+        * Theoretisch mit Sender & Empfänger Protokoll möglich um Datenaustausch zu ermöglichen z.B. kleine
+        Wetterstation
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### Native Code
+    </script>
+</section>
+
+<section>
+    <!--@formatter:off-->
+        <pre><code>
+void RCSwitch::send(char* sCodeWord) {
+    for (int nRepeat=0; nRepeat&gt;nRepeatTransmit; nRepeat++) {
+        int i = 0;
+        while (sCodeWord[i] != '\0') {
+            switch(sCodeWord[i]) {
+                case '0':
+                    this->send0();
+                    break;
+                case '1':
+                    this->send1();
+                break;
+            }
+            i++;
+        }
+    this->sendSync();
+    }
+}
+        </code></pre>
+
+    <aside class="notes"><p style="font-weight: 800; color: red;">Code nur kurz zeigen, nicht genau drauf eingehen!</p></aside>
+</section>
+
+<section>
+
+        <pre><code>
+
+/**
+* Sends a "0" Bit
+* _
+* Waveform Protocol 1: | |___
+* _
+* Waveform Protocol 2: | |__
+*/
+void RCSwitch::send0() {
+    if (this->nProtocol == 1){
+        this->transmit(1,3);
+    }
+    else if (this->nProtocol == 2) {
+        this->transmit(1,2);
+    }
+}
+        </code></pre>
+
+    <aside class="notes"><p style="font-weight: 800; color: red;">Code nur kurz zeigen, nicht genau drauf eingehen!</p></aside>
+</section>
+
+<!--<section>
+        <pre><code class="c++">
+void RCSwitch::transmit(int nHighPulses, int nLowPulses) {
+    boolean disabled_Receive = false;
+    int nReceiverInterrupt_backup = nReceiverInterrupt;
+    if (this->nTransmitterPin != -1) {
+        if (this->nReceiverInterrupt != -1) {
+            this->disableReceive();
+            disabled_Receive = true;
+        }
+        /*actually "writing" to the GPIO pins in real time*/
+        for(int i=0; i&lt;nHighPulses; i++) {
+            digitalWrite(this->nTransmitterPin, HIGH);
+            delayMicroseconds( this->nPulseLength);
+        }
+        for(int i=0; i&lt;nLowPulses; i++) {
+            digitalWrite(this->nTransmitterPin, LOW);
+            delayMicroseconds( this->nPulseLength);
+        }
+        if(disabled_Receive){
+            this->enableReceive(nReceiverInterrupt_backup);
+        }
+    }
+}
+        </code></pre>
+    &lt;!&ndash;@formatter:on&ndash;&gt;
+</section>-->
+
+
+
+<section data-markdown>
+    <script type="text/template">
+        ## Spring Applikation
+
+        * Spring MVC
+        * REST Services: Jackson + Spring
+        * Persistenz: Hibernate
+        * BPM: Camunda
+
+    </script>
+</section>
+
+
+<section>
+    <h3>Camunda + Drools</h3>
+
+    <div class="left">
+        <!--@formatter:off-->
+            <pre><code>
+rule "Switch ON Wohnzimmer for Chromecast"
+when
+    u : User( username == "Chromecast" )
+then
+    HashSet&lt;String&gt; specials = new HashSet&lt;&gt;();
+    specials.add( "Wohnzimmer" );
+    insert( specials );
+    System.out.println( "## drools: special rule
+    to switch ON Wohnzimmer
+    for Chromecast ##" );
+end
+            </code></pre>
+        <!--@formatter:on-->
+    </div>
+    <div class="right">
+        <ul>
+            <li>Rule Engine eingebettet in BPM Framework</li>
+            <li>Unser Prozess: Nimmt Benutzerstatusänderungen entgegen</li>
+            <li>Wendet Regeln aus Drools an, schaltet Lichter</li>
+        </ul>
+    </div>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        #### Network device discovery module
+
+        * basierend auf Oracle Complex Event Processing Embedded (CEP)
+        * läuft auf Raspberry Pi
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        #### Oracle CEP
+
+        * Ideal bei IoT, da eventorientiert
+        * Möglichkeiten Events und deren Relationen / Interaktionen auf Deviceebene zu filtern/puffern/dirigieren/....
+
+        Note:
+
+        * Intelligenz durch Eventorientierung
+        * Kombination von Events, Aggregation, ...
+        * Aus Systemanalytischer perspektive einzig logische Ergänzung neben Prozessorientierung und Funktionsorientierung.
+        * Im IoT kann sehr viel über Events gefahren werden.
+    </script>
+</section>
+
+
+<!--TODO CEP , Camunda usw. auch mal erklären-->
+<section>
+    <h4>Oracle CEP EPN</h4>
+    <h5>(Event Processing Network)</h5>
+    <img src="images/epn_cep.png" alt="epn oracle CEP" class="stretch"/>
+
+</section>
+
+
+</section>
+<!--============================================IoT Prototyp ==============================================-->
+<section>
+    <section>
+        <h2>Live Demo</h2>
+
+        <img src="images/inspire_it_1.JPG" alt="" class="stretch"/>
+
+        <p class="source">Foto vom IoT Basteltisch auf der InspireIT Konferenz von OC</p>
+    </section>
+</section>
+
+<section>
+    <!--<section>
+        <h2>Fazit</h2>
+    </section>-->
+    <section>
+        <!--<h2>Prototyp</h2>-->
+        <h2>Internet of Things</h2>
+
+        <div class="waypoints">
+            <ul>
+                <li>Trend</li>
+                <li>Kommunikation & Protokolle</li>
+                <li>Who sets the standard?</li>
+                <li>Herausforderungen & Chancen</li>
+                <li>Was können wir schon?</li>
+                <li>Prototyp</li>
+                <li class="active">Fazit</li>
+            </ul>
+        </div>
+
+    </section>
+
+
+    <section data-state="alert">
+        <h3>???</h3>
+        <!--TODO Fragen (noch) nicht Vortragsready-->
+        <ul>
+            <li>Was bedeutet nun IoT für unsere Architekturen und Anwendungen?</li>
+            <li>Mit wem arbeitet man am besten zusammen?</li>
+            <li>Wer setzt sich am Markt durch?</li>
+            <li>Welche technische Möglichkeiten sollte man verfolgen?</li>
+            <li>Wann startet man am besten?</li>
+        </ul>
+
+    </section>
+
+
+    <section data-state="soothe">
+        <ul>
+            <li>
+                <p>Wer sich durchsetzt kann niemand wissen</p>
+
+                <p>&#8594; <strong>Flexibilität</strong> als Kernaufgabe in der Architektur</p>
+            </li>
+            <li class="fragment"><strong>Partnerschaften </strong>von Enterprise Softwarehäuser & M2M Veteranen lohnenswert</li>
+            <li class="fragment">Management: Heute schon Unternehmen auf <strong>Chancen prüfen</strong> um große <strong>Potenziale frühzeitig zu nutzen</strong>
+            </li>
+        </ul>
+
+        <aside class="notes">
+            <ol>
+                <li>flexibilität steigern. Modular werden</li>
+                <li>Partnerschaften zwischen M2M + Softwarehäuser können sich lohnen</li>
+                <li>Wer sich durchsetzt wird sich zeigen. Wer aber denkt "den richtigen" ausgewählt zu haben und sich
+                    darauf verlässt, ein Protokoll einzusetzen, das erhalten bleibt wird statistisch gesehen verlieren.
+                    Wer aber auf Änderungen eingehen kann wird frühzeitigen erfolg aufrecht erhalten können. Hier kann
+                    viel aus den Anfangszeiten des Internets gelernt werden. Welche Anbieter haben sich gehalten, was
+                    ist mit jenen passiert, die auf die falschen gesetzt haben ohne alternativen zu ermöglichen??
+                </li>
+                <li >Technische Möglichkeiten sollten beobachtet werden. Bei konkreten Projekten dann
+                    ausführliche Analyse
+                </li>
+                <li >Um Grundkenntnisse über Technik "unten rum" zu erlangen: Experimentieren</li>
+            </ol>
+        </aside>
+    </section>
+
+    <section>
+        <h3>Neue Geschäftsmodelle</h3>
+        <img src="images/business_modell.png" alt=""/>
+    </section>
+
+
+
+    <section>
+
+        <div class="left-75">
+            <div style="height: 540px">
+                <div class="left-25">
+                    <img src="images/qrcode_vcard_Pascal.svg" alt="" style="width: 85%"/>
+                </div>
+                <div class="right-75" style="text-align: left;">
+                    <h4>Pascal Brokmeier</h4>
+
+                    <p>Mobil: +49 (0) 173-727 9690</p>
+
+                    <p>Email: pbr@opitz-consulting.com</p>
+
+                    <p>Internet: www.pascalwhoop.github.io</p>
+
+                </div>
+            </div>
+
+            <div style="height: 540px">
+                <div class="left-25">
+                    <img src="images/qrcode_vcard_Dominik.svg" style="width: 85%"/>
+                </div>
+                <div class="right-75" style="text-align: left;">
+                    <h4>Dominik Bial</h4>
+
+                    <p>Mobil: +49 (0) 173-727 9023</p>
+
+                    <p>Email: dominik.bial@opitz-consulting.com</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="left-25">
+            <img src="images/oc_iot_qr.svg" alt=""/>
+
+            <p style="font-size: 0.6em"><a href="www.opitz-consulting.com/iot">www.opitz-consulting.com/iot</a></p>
+        </div>
+
+    </section>
+
+
+    <!--<section>
+    <h3>???</h3>
+    <ul>
+        <li>Was bedeutet nun IoT für uns, Architekturen und Anwendugen? <p class="answer fragment">Beantworten wir
+            nicht.
+            "Was ist IoT" hat man oft genug gehört, das nochmal durch zu kauen langweilt nur</p></li>
+
+        <li>Welche Art Szenarien können wir abdecken?<p class="answer fragment">gehört hier finde ich noch nicht
+            hin. dieser
+            strang beantwortet nur fragen zum Trend des Hypes</p></li>
+        <li>Welchen Einfluss hat dies auf die Systemlandschaft? <p class="answer fragment">auch später..</p></li>
+        <li>Wann startet man am besten? <p class="answer fragment">würde ich in die konklusion packen</p></li>
+        <li>Was bedeutet dies für unsere Kunden? <p class="answer fragment">hier vielleicht auch konklusion mit
+            referenz auf
+            trend</p></li>
+        <li>...</li>
+    </ul>
+    <aside class="notes">Unmengen an offenen Fragen zu klären
+        <ul>
+            <li></li>
+        </ul>
+    </aside>
+</section> -->
+
+    <!--<section>
+    <h3>???</h3>
+    <ul>
+
+
+            <p class="answer fragment">Man sollte sich einen Werkzeugkasten an Know-How über mögliche Technologien
+                aufbauen und
+                diese Projektspezifisch einsetzen. Kein "one protocol fits all projects"</p>
+        </li>
+        <li>
+            <p>Welche sind am interessantesten? </p>
+
+            <p class="answer fragment">XMPP & CoAP, da gut für Sensordatensammeln und low power
+                Übertragung mit reichhaltigen Konfigurationsmöglichkeiten, andere aber auch</p>
+        </li>
+    </ul>
+
+    <aside class="notes">
+        "Pascal hat einige Folien erstellt und Dominik hat Fragen gestellt. Aber wieso nicht genau die Form auch in
+        Präsentation aufnehmen? Also hier Fragen und unsere Antworten:..."
+    </aside>
+</section> -->
+
+    <!-- <section>
+        <h3>???</h3>
+        <ul>
+            <li>
+                <p>Welche Ansätze sollte man weiter verfolgen?</p>
+
+                <p class="answer fragment">... viele im Blick behalten <!--TODO--><!--</p>
+        </li>
+        <li>
+            <p>Sollte man auf Standards setzen?</p>
+
+            <p class="answer fragment">Kann man wissen, dass das eigene "IoT Silo" nicht mit anderen kommuniziert? Wenn
+                man diese
+                Frage für 10 Jahre in die Zukunft mit "Nein" beantworten kann, kann man sich seinen eigenen Spielpark
+                bauen. Ansonsten sollte man auf verbreitete Standards. Stichwort SOA</p>
+        </li>
+        <li>
+            <p>Was passt am besten zur Softwarelandschaft?</p>
+
+            <p class="answer fragment">Welche Softwarelandschaft? <!--TODO--><!--</p>
+        </li>
+    </ul>
+</section> -->
+
+
+</section>
+
+<section>
+    <h2>Backup</h2>
+</section>
+
+<section data-state="soothe">
+    <h3>Unser Ansatz: Kreativworkshop</h3>
+    <ul>
+        <li class="fragment">Mit 12-20 Personen aus allen Bereichen gemeinsam kreativ Potenziale erkennen</li>
+        <li class="fragment">Konzepte entwickeln und tragfähige Geschäftsmodelle auswählen</li>
+        <li class="fragment">Mögliche Projektentwicklungen besprechen</li>
+    </ul>
+</section>
+
+<section>
+    <img src="images/coap_communication_ways.png" alt="" class="left"/>
+
+    <div class="right">
+        <ul>
+            <li>UDP, RESTful, QoS auf Application Ebene</li>
+            <li>Wesentlich energieeffizienter als HTTP</li>
+            <li>Unnötige Roundtrips können vermieden werden</li>
+            <li>TLS auf Datagram Ebene</li>
+            <!--<li>Observe & Block Transfer optional</li>-->
+        </ul>
+    </div>
+</section>
+
+
+
+<section>
+    <section data-markdown data-state="alert">
+        <script type="text/template">
+            ## Szenario Devicemanagement
+
+            * 300 Hardwareprodukte
+            * 30000 Things
+            * 3000 verschiedene Kommunikationsarten
+            * über 200000 Verbindungen
+            * 10 Mio. + Transaktionen/Tag
+
+            ** Jetzt wurde "CoAP via UDP, TLS Datagramsecurity" gehackt. Was tun? **
+
+            Note:
+
+            * Alternativ: Protokoll wird deprecated, Allianz löst sich auf. Oder Hersteller geht Pleite und Framework wird nicht mehr weiterentwickelt. ...
+        </script>
+    </section>
+
+
+    <section>
+        <img src="images/complex_graph_transparent.png" alt="" class="stretch"/>
+
+        <p class="oh-shit fragment">oh sh*t</p>
+
+        <p class="source">Internet mapping 1998: <a href="http://www.cheswick.com/ches/map/gallery/index.html#pookie">http://www.cheswick.com/ches/map/gallery/index.html#pookie</a>
+        </p>
+        <aside class="notes">
+            Dann kommt der "oh shi*" Moment! Wer hier ungeordnet Dinge in die Welt schickt kriegt schnell Probleme
+        </aside>
+    </section>
+    <section data-markdown>
+        <script type="text/template">
+            ### Fragen
+
+            * Welche Geräte / Kommunikationswege sind betroffen?
+            * Welche Ausweichtechnologien gibt es?
+            * Wie können die Geräte umgestellt werden?
+        </script>
+    </section>
+
+
+    <section data-state="soothe">
+        <div class="left">
+            <ul>
+                <li>Wer hier sein Netzwerk gut managed kann Änderungen entspannter entgegen blicken</li>
+                <li>Unser Tipp: <strong>Graphenbasierte DB als Grundlage des Device Management im IoT </strong></li>
+            </ul>
+        </div>
+        <div class="right fragment">
+            <img src="images/graph_simple.png" alt=""/>
+        </div>
+
+        <aside class="notes">
+            <p>Das IoT Netz ist ein Graph. Jeder Knoten ist ein Ding, alle Linien die Kommunikationswege. Knoten und
+                Kanten
+                können durch unstrukturierte Daten beschrieben werden.</p>
+
+            <p>Das Netz ist wie ein Social-Network of things. Knoten sind Profile von Things, Kanten sind Verbindungen
+                zwischen den Dingen (wie Freundschafen o.ä. aus Facebook)</p>
+
+            <p>Ding A will Informationen zu C im Bereich N. Query an DB gibt mögliche Kommunikationspartner zurück. A
+                kann
+                dann Objekte aus Menge F nach </p>
+        </aside>
+    </section>
+
+    <section>
+        <ul>
+            <li>Welche Geräte / Kommunikationswege sind betroffen?
+                <p class="answer fragment">Query an DB nach allen Kanten welche entsprechendes Muster besitzen</p>
+            </li>
+
+            <li>Welche Ausweichtechnologien gibt es?
+                <p class="answer fragment">
+                    Für jedes Kommunikationspaar: Welche alternativen Kommunikationswege gibt es? Für alle Paare: Welche
+                    Alternativen sind am häufigsten?
+                </p>
+            </li>
+            <li>Wie können die Geräte umgestellt werden?
+                <p class="answer fragment">
+                    Für jeden betroffenen Knoten: Wie ist die Adresse (IPv6), wie wird neue Software eingespielt?
+                </p>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Nutzung der Informationen im Unternehmen</h2>
+        <img src="images/SOAConcept.PNG" alt="" class="stretch"/>
+    </section>
+</section>
+
+<section>
+    <section><h3>Prototyp bachup</h3>       </section>
+
+
+    <section>
+        <div class="left">
+            <img src="images/frontend-lamps.png" alt=""/>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li>Mobile Hybride Webapp</li>
+                <li>nutzt Phonegap</li>
+                <li>kommuniziert mit Backend via REST</li>
+                <li>Android / iOS</li>
+            </ul>
+        </div>
+
+
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ![angularjs label](images/angularjs.png)
+
+
+            * Ideal für single-page webapps
+            * MVC Framework
+            * Custom Tags für HTML `directives`
+            * two-way data binding zwischen HTML & JS
+            * Einfache Nutzung von REST services
+
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ![ionic-logo](images/ionic-logo-white.svg)
+
+            * Open-Source frontend framework für hybrid mobile webapps
+            * basiert auf AngularJS
+            * enthält diverse HTMl CSS und JS Komponenten
+            * Vergleichbar mit Twitter Bootstrap aber explizit für Mobile
+
+        </script>
+    </section>
+
+
+    <!--Zwischeneinwurf Camunda (ganz fix)-->
+
+    <section>
+        <h3>
+            <img src="images/camunda.jpg" alt="" style="vertical-align: middle; height: 1.2em"/>
+            Camunda BPM
+        </h3>
+        <ul>
+            <li>Open Source Framework für BPM</li>
+            <li>BPMN 2.0 process engine in Java</li>
+            <li>Sowohl Plattform als auch Modeller (Eclipse Plugin)</li>
+        </ul>
+
+        <aside class="notes">
+            KURZ FASSEN!!!
+        </aside>
+    </section>
+
+    <section>
+        <h3>Standalone</h3>
+        <img class="stretch" src="images/standalone.png" alt=""/>
+
+        <p class="source">http://camunda.org/features/</p>
+        <aside class="notes">Use the process engine as a standalone service and interact with it from remote
+            applications. Use the REST API for remote communication or implement your own access infrastructure
+            using JMS or SOAP Webservices.
+        </aside>
+    </section>
+    <section>
+        <h3>Cluster</h3>
+        <img class="stretch" src="images/cluster.png" alt=""/>
+
+        <p class="source">http://camunda.org/features/</p>
+        <aside class="notes">
+            Run the process engine on different cluster
+            nodes on top of a shared database. Use this setup for scale up or high availability.The process engine
+            supports heterogeneous clusters where different processes are executed on different nodes.
+        </aside>
+    </section>
+    <section>
+        <h3>Embedded</h3>
+        <img class="stretch" src="images/embedded.png" alt=""/>
+
+        <p class="source">http://camunda.org/features/</p>
+        <aside class="notes">
+            Since the process engine is implemented in Java itself, it can be added as a library to any Java
+            application. We call this the Embedded Process Engine. Alternatively the process engine can also be
+            installed as a container service inside an Application Server or a lightweight container such as
+            Apache Tomcat. This way the process engine can be used by multiple applications which can be
+            redeployed without shutting down the process engine.
+
+            <-- our approach (integrated in Spring)
+        </aside>
+    </section>
+</section>
+
+</div>
+</div>
+
+<script src="js/head.min.js"></script>
+
+<!--to print as pdf-->
+<!--<link rel="stylesheet" href="css/print/pdf-experimental.css"/>
+<script type="text/javascript" src="css/print/print_experimental.js"></script>-->
+<!--revealjs normal javascript-->
+<script src="js/reveal.js"></script>
+
+<script type="text/javascript" src="revealjsConfig.js"></script>
+
+
+</body>
+</html>

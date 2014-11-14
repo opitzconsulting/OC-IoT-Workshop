@@ -1,5 +1,6 @@
 //dependencies
 var express = require('express');
+var WebSocket = require('ws');
 var hueControl = require('./local_modules/hueControl.js');
 var ratingLogger = require('./local_modules/ratingHistory.js');
 var loggingStatistics = require('./local_modules/loggingStatistics.js');
@@ -13,6 +14,8 @@ app.use(express.bodyParser());
 //to not exit everything if an error is thrown
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
+
+    /*if(err.)*/
 });
 
 
@@ -24,12 +27,53 @@ app.use('/static/app/bower_components/', express.static(__dirname + '/static/bow
 var userRequests = {};
 
 
+var AMAZON_WS_URL = "ws://ec2-54-93-187-220.eu-central-1.compute.amazonaws.com/ws/";
+
+var sendPingToWS = function(ws){
+    var ping = JSON.stringify({
+        type: "ping",
+        data: new Date().getTime()
+    });
+    ws.send(ping);
+};
+
+
+var connectWebsocket = function(){
+    return  new WebSocket(AMAZON_WS_URL);
+};
+var ws = connectWebsocket();
+
+var pingObject = null;
+ws.on('open', function () {
+    console.log("WS connection success");
+    setInterval(sendPingToWS, 10000, ws);
+});
+
+//for disconnects auto reconnect
+ws.on('close', function(){
+    console.log("WS disconnect. attempting reconnect...");
+    //clearing ping, will be restarted upon open event
+    if(pingObject) clearInterval(pingObject);
+    ws = connectWebsocket();
+});
+
+ws.on('message', function (data, flags) {
+    data = JSON.parse(data);
+    userRegister(data.data.username);
+    switch(data.type) {
+        case "comment":
+            userComment(data.data.username, data.data.comment);
+            break;
+        case "rating":
+            userGenericRating(data.data.username, parseInt(data.data.rating));
+            break;
+    }
+});
+
+
 // ==================================================================
 //every user in the workshop calls this once he calls the website
-app.post('/api/user/:username', function (req, res) {
-    var username = req.params.username;
-
-
+var userRegister = function (username) {
     //if user does not yet exist add him
     if (!userRequests[username]) {
         console.log("user " + username + " joined the workshop");
@@ -38,94 +82,94 @@ app.post('/api/user/:username', function (req, res) {
             theory: 0
         }
     }
-    res.send(userRequests[username]);
-});
+};
 
 // ==================================================================
 // user custom textual response
-
-app.post('/api/user/:username/comment', function (req, res) {
-    var username = req.params.username;
-    var comment = req.body;
+var userComment = function (username, comment) {
     ratingLogger.logUserComment(username, comment.text);
     console.log("user comment received");
-    res.send("success");
-});
+};
 
-// ==================================================================
-// user call for coffee
-
-app.post('/api/user/:username/coffee', function (req, res) {
-    var username = req.params.username;
-    hueControl.callForCoffee();
-    ratingLogger.logUserComment(username, "I NEED COFFEE !!!");
-    console.log("user coffee request received");
-    res.send("success");
-});
-
-// ==================================================================
-// user successfully completed section 11 with CEP events and sends them to the system
-
-app.post('/api/user/:username/cepevent', function (req, res) {
-    var username = req.params.username;
-    var message = req.body.message;
-    console.log("CEP Event submitted by User: " + username + "\nEvent message: " + message);
-    res.send("success");
-});
 
 // ==================================================================
 // our API for controlling the lights. we take the user requests here
 
-app.put('/api/user/:username/speed/:speed', function (req, res) {
-    var username = req.params.username;
-    var speed = parseInt(req.params.speed);
+var lastRating = new Date();
 
+var userGenericRating = function(username, rating){
+
+    //only accept ratings every 500ms or more
+    //TODO not very pretty
+    var now = new Date();
+    if(now - lastRating < 500){
+        console.log("skipped due to time");
+        return;
+    }
+    lastRating = now;
+
+    console.log("user " + username + " wants " + rating);
+
+    if (rating == 1 || rating == 0 || rating == -1) {
+
+        userRequests[username].theory = rating;
+        userRequests[username].speed= rating;
+
+        var hue = hueControl.calcTheoryColor(userRequests);
+        var sat = hueControl.calcSaturation(userRequests, "theory");
+        hueControl.setAllLampsColor(hue, sat);
+
+        //for later evaluation purposes
+        ratingLogger.logRating(userRequests, username, "theory", rating, {hue: hue, sat: sat});
+    }
+};
+
+var userRating = function(username, rating, type){
+    if (rating == 1 || rating == 0 || rating == -1) {
+
+        userRequests[username][type] = rating;
+
+        var hue, sat = null;
+
+        switch (type) {
+            case "theory":
+                hue = hueControl.calcTheoryColor(userRequests);
+                sat = hueControl.calcSaturation(userRequests, "theory");
+                hueControl.setTheoryColor(hue, sat);
+                ratingLogger.logRating(userRequests, username, "theory", rating, {hue: hue, sat: sat});
+                break;
+            case "speed":
+                hue = hueControl.calcSpeedColor(userRequests);
+                sat = hueControl.calcSaturation(userRequests, "speed");
+                hueControl.setSpeedColor(hue, sat);
+                ratingLogger.logRating(userRequests, username, "speed", rating, {hue: hue, sat: sat});
+                break;
+        }
+    }
+
+};
+
+/* DEPRECATED
+
+var userSpeedRating = function (username, speed) {
     console.log("user " + username + " wants speed " + speed);
     if (speed == 1 || speed == 0 || speed == -1) {
-
-
         userRequests[username].speed = speed;
-        res.send(userRequests[username]);
-
         var hue = hueControl.calcSpeedColor(userRequests);
         var sat = hueControl.calcSaturation(userRequests, "speed");
         hueControl.setSpeedColor(hue, sat);
 
         //for later evaluation purposes
         ratingLogger.logRating(userRequests, username, "speed", speed, {hue: hue, sat: sat});
-    } else {
-        res.send("Error, wrong values submitted");
     }
+};
 
-});
-
-/*
- var degreeMultiplicator = 181.3333;
- var degrees = 360;
-
- function foo() {
-
- hueControl.setSpeedColor(Math.floor(degreeMultiplicator * degrees));
- degrees += 5;
-
- if (degrees > 360) {
- degrees -= 360;
- }
- }
- setInterval(foo, 301);
- */
-
-
-app.put('/api/user/:username/theory/:theory', function (req, res) {
-    var username = req.params.username;
-    var theory = parseInt(req.params.theory);
-
+var userTheoryRating = function (username, theory) {
     console.log("user " + username + " wants theory " + theory);
 
     if (theory == 1 || theory == 0 || theory == -1) {
 
         userRequests[username].theory = theory;
-        res.send(userRequests[username]);
 
         var hue = hueControl.calcTheoryColor(userRequests);
         var sat = hueControl.calcSaturation(userRequests, "theory");
@@ -133,10 +177,9 @@ app.put('/api/user/:username/theory/:theory', function (req, res) {
 
         //for later evaluation purposes
         ratingLogger.logRating(userRequests, username, "theory", theory, {hue: hue, sat: sat});
-    } else {
-        res.send("Error, wrong values submitted");
     }
-});
+};*/
+
 
 // ==================================================================
 // This is for the speakers slide logging. Every Time the speaker
@@ -152,14 +195,14 @@ app.put('/api/slides', function (req, res) {
 // ==================================================================
 // retrieve logging data here
 app.get('/api/logs', function (req, res) {
-    loggingStatistics.getAllLogFiles(function(files){
+    loggingStatistics.getAllLogFiles(function (files) {
         res.send(files);
     })
 });
 
 app.get('/api/logs/:logFileName', function (req, res) {
 
-    loggingStatistics.getLogFile(req.params.logFileName, function(loggingContent){
+    loggingStatistics.getLogFile(req.params.logFileName, function (loggingContent) {
         res.send(loggingContent);
     })
 });

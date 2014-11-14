@@ -1,0 +1,98 @@
+/*custom shit*/
+
+/*for sources*/
+.reveal div.source, .reveal span.source, .reveal p.source {
+    font-size: 0.35em;
+}
+
+.reveal .slides .left {
+    float: left;
+    width: 50%;
+}
+
+.reveal .slides .right {
+    float: right;
+    width: 50%;
+
+}
+
+.reveal .slides .left-25 {
+    float: left;
+    width: 25%;
+}
+
+.reveal .slides .right-25 {
+    float: right;
+    width: 25%;
+
+}
+
+.reveal .slides .left-75 {
+    float: left;
+    width: 75%;
+}
+
+.reveal .slides .right-75 {
+    float: right;
+    width: 75%;
+
+}
+
+.person-image {
+    height: 373px;
+}
+
+.answer {
+    color: darkgreen;
+}
+
+
+p.oh-shit {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    font-size: 2em;
+    color: red;
+    -webkit-transform: rotate(30deg);
+}
+
+.waypoints{
+    list-style: none;
+
+}
+
+.waypoints ul{
+    list-style: none;
+    margin: 0;
+
+}
+
+.waypoints ul li{
+    width: 900px;
+    list-style: none;
+    padding: 20px;
+    /*display: inline-block;*/
+    border: 2px solid darkgray;
+    font-size: 0.6em;
+    background-color: #C6C6C6;
+}
+
+.waypoints ul li.active{
+    border: 2px solid black;
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+    color: #2f3a75;
+    background-color: #727272;
+}
+
+/*.waypoints ul li:after{
+    content: "\2192";
+}*/
+
+
+
+
+
+
+
+

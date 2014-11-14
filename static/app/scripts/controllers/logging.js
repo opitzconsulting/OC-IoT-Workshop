@@ -28,6 +28,8 @@ angular.module('IoTWorkshopWebApp')
             var speedData = [];
 
             //get all lamp rating data and put them in separate arrays
+
+            //note we iterate over the array backwards twice which causes our array to be in the correct direction again. Only once and we would have had inverted data
             var i = logFileSelected.length;
             while (i--) {
                 if (logFileSelected[i].type == 'userRating') {
@@ -44,8 +46,8 @@ angular.module('IoTWorkshopWebApp')
             theoryData = convertDataObjectsToArrays(theoryData, "theory");
             speedData  = convertDataObjectsToArrays(speedData, "speed");
 
-            drawChart(theoryData, {curveType: 'function'}, 'theory_chart');
-            drawChart(speedData, {curveType: 'function'},  'speed_chart');
+            drawChart(theoryData,{fontSize: "20"}, 'theory_chart'); /*, {curveType: 'function'}*/
+            drawChart(speedData,{fontSize: "20"},  'speed_chart');
         }
 
         /**
@@ -67,10 +69,29 @@ angular.module('IoTWorkshopWebApp')
 
             returnArray.push(['Zeit','Durchschnitt', 'Hue Farbwert', {type:'string', role: 'tooltip'}]);
             var i = dataArray.length;
+            /* old version. We now add additional "fake" data so the graph shows discrete style function instead of connecting point to point with lines that suggest values that arent even possible
+
             while(i--){
-                var simpleTime = new Date(dataArray[i].time).toLocaleTimeString();
-                returnArray.push([simpleTime, average, dataArray[i].hue,  ("Count: " + dataArray[i].userCount +" Sum: " + dataArray[i].currentRatingAverage)]);
+                var date = new Date(dataArray[i].time);
+                returnArray.push([date, average, dataArray[i].hue,  ("Count: " + dataArray[i].userCount +" Sum: " + dataArray[i].currentRatingAverage)]);
+            }*/
+
+            while(i--){
+
+
+                //date for the "next" item. But we add a fake on in between first
+                var date = new Date(dataArray[i].time);
+
+                //here we add "fake" data to make our graph look discrete
+                if(returnArray.length > 1){
+                    var prevCopy = angular.copy(returnArray[returnArray.length-1]);
+                    prevCopy[0].setTime(date.getTime() - 1); //take the date of element to add and reduce it by 1 ms.
+                    returnArray.push(prevCopy);
+                }
+
+                returnArray.push([date, average, dataArray[i].hue,  ("Count: " + dataArray[i].userCount +" Sum: " + dataArray[i].currentRatingAverage)]);
             }
+
             return returnArray;
         }
 

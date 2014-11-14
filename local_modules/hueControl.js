@@ -24,7 +24,7 @@ var callForCoffee = function () {
         data: JSON.stringify({
             "alert": "lselect"
         })
-    }
+    };
 
 
     //set both lamps to perform breath cycles
@@ -37,17 +37,29 @@ var callForCoffee = function () {
         data: JSON.stringify({
             "alert": "none"
         })
-    }
+    };
 
     setTimeout(function(){
         client.put(urlSpeed, newArgs, function(data){})
         client.put(urlTheory, newArgs, function(data){})
     }, 3000)
 
-}
+};
 
 var setTheoryColor = function (hue, sat) {
-    var url = hueConf.apiURL + "/" + hueConf.username + hueConf.lights + "/" + hueConf.workshopLampIDs.theory + "/state";
+    setLampColor(hue, sat, hueConf.workshopLampIDs.theory);
+};
+
+var setAllLampsColor = function(hue, sat){
+    for (var lamp in hueConf.workshopLampIDs){
+        if(hueConf.workshopLampIDs.hasOwnProperty(lamp)){
+            setLampColor(hue, sat, hueConf.workshopLampIDs[lamp]);
+        }
+    }
+};
+
+var setLampColor = function(hue, sat, lamp){
+    var url = hueConf.apiURL + "/" + hueConf.username + hueConf.lights + "/" + lamp + "/state";
 
     var args = {
         data: JSON.stringify({
@@ -58,10 +70,8 @@ var setTheoryColor = function (hue, sat) {
     };
 
     client.put(url, args, function (data) {
-
-        // parsed response body as js object
     });
-};
+}
 
 var getLamps = function (callback) {
     // registering remote methods
@@ -75,21 +85,7 @@ var getLamps = function (callback) {
 };
 
 var setSpeedColor = function (hue, sat) {
-    var url = hueConf.apiURL + "/" + hueConf.username + hueConf.lights + "/" + hueConf.workshopLampIDs.speed + "/state";
-
-
-    var args = {
-        data: JSON.stringify({
-            "on": true,
-            "hue": hue,
-            "sat": sat
-        })
-    };
-
-    client.put(url, args, function (data) {
-
-        // parsed response body as js object
-    });
+   setLampColor(hue, sat, hueConf.workshopLampIDs.speed);
 };
 
 var calcTheoryColor = function (userRequests) {
@@ -104,7 +100,7 @@ var calcTheoryColor = function (userRequests) {
     for (var user in userRequests) {
         if (userRequests.hasOwnProperty(user)) {
             count++;
-            theorySum += userRequests[user].theory;
+            theorySum += parseInt(userRequests[user].theory);
         }
     }
     //if we have 10 participants the range of values for speedSum is [-10 ; 10] so 21 possible values and therefore 20 possible steps.
@@ -131,7 +127,7 @@ var calcSpeedColor = function (userRequests) {
     for (var user in userRequests) {
         if (userRequests.hasOwnProperty(user)) {
             count++;
-            speedSum += userRequests[user].speed;
+            speedSum += parseInt(userRequests[user].speed);
         }
     }
     //if we have 10 participants the range of values for speedSum is [-10 ; 10] so 21 possible values and therefore 20 possible steps.
@@ -157,7 +153,7 @@ var calcSaturation = function (userRequests, type) {
     for (var user in userRequests) {
         if (userRequests.hasOwnProperty(user)) {
             userCount++;
-            sum += userRequests[user][type];
+            sum += parseInt(userRequests[user][type]);
         }
     }
 
@@ -192,14 +188,17 @@ var printUserRatingDetails = function(userRequests, type){
         }
     }
     console.log(userCount + " Users: (-1): " + neg + " (0): " + nul + " (1): " + plus + " Sum: " + sum);
-}
+};
 
 module.exports = {
     callForCoffee: callForCoffee,
     getLamps: getLamps,
+    setLampColor: setLampColor,
+    setAllLampsColor: setAllLampsColor,
     setTheoryColor: setTheoryColor,
     setSpeedColor: setSpeedColor,
     calcTheoryColor: calcTheoryColor,
     calcSpeedColor: calcSpeedColor,
     calcSaturation: calcSaturation
+
 };
