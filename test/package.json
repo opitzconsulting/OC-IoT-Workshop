@@ -1,0 +1,9 @@
+{
+    "name": "IoT-Prototyp-Workshop-App-Tests",
+    "description": "",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-rest-client": "1.0.0"
+    }
+}
