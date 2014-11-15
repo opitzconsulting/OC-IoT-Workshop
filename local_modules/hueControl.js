@@ -15,6 +15,9 @@ var hueConf = {
 
 };
 
+// with eg 3: if 33% of the people active in the presentation rating vote towards one direction, the color should be "full" so 100% in one direction
+var SUM_MULTIPLICATOR = 8;
+
 
 var callForCoffee = function () {
     var urlTheory = hueConf.apiURL + "/" + hueConf.username + hueConf.lights + "/" + hueConf.workshopLampIDs.theory + "/state";
@@ -28,8 +31,10 @@ var callForCoffee = function () {
 
 
     //set both lamps to perform breath cycles
-    client.put(urlSpeed, args, function (data) {});
-    client.put(urlTheory, args, function (data) {});
+    client.put(urlSpeed, args, function (data) {
+    });
+    client.put(urlTheory, args, function (data) {
+    });
 
 
     //stop them after a while
@@ -39,9 +44,11 @@ var callForCoffee = function () {
         })
     };
 
-    setTimeout(function(){
-        client.put(urlSpeed, newArgs, function(data){})
-        client.put(urlTheory, newArgs, function(data){})
+    setTimeout(function () {
+        client.put(urlSpeed, newArgs, function (data) {
+        })
+        client.put(urlTheory, newArgs, function (data) {
+        })
     }, 3000)
 
 };
@@ -50,15 +57,19 @@ var setTheoryColor = function (hue, sat) {
     setLampColor(hue, sat, hueConf.workshopLampIDs.theory);
 };
 
-var setAllLampsColor = function(hue, sat){
-    for (var lamp in hueConf.workshopLampIDs){
-        if(hueConf.workshopLampIDs.hasOwnProperty(lamp)){
+var setSpeedColor = function (hue, sat) {
+    setLampColor(hue, sat, hueConf.workshopLampIDs.speed);
+};
+
+var setAllLampsColor = function (hue, sat) {
+    for (var lamp in hueConf.workshopLampIDs) {
+        if (hueConf.workshopLampIDs.hasOwnProperty(lamp)) {
             setLampColor(hue, sat, hueConf.workshopLampIDs[lamp]);
         }
     }
 };
 
-var setLampColor = function(hue, sat, lamp){
+var setLampColor = function (hue, sat, lamp) {
     var url = hueConf.apiURL + "/" + hueConf.username + hueConf.lights + "/" + lamp + "/state";
 
     var args = {
@@ -84,8 +95,43 @@ var getLamps = function (callback) {
     });
 };
 
-var setSpeedColor = function (hue, sat) {
-   setLampColor(hue, sat, hueConf.workshopLampIDs.speed);
+//for use with one lamp color range is red-yellow-green-blue
+var calcGenericColor = function (userRequests) {
+    var blue = 46920;
+    var red = 0;
+    var span = blue - red;
+    //we use the count to determine how many users we have in the workshop
+    var count = 0;
+    //the theorySum determines what color the lamp should display
+    var sum = 0;
+
+    for (var user in userRequests) {
+        if (userRequests.hasOwnProperty(user)) {
+            count++;
+            sum += parseInt(userRequests[user].theory);
+        }
+    }
+
+    //TODO can be done better: We just multiply the sum to intensify the effect. If 1/10 vote too slow it will have the effect of 3/10 too slow
+
+    //we check if sum is negative. If yes, we save that (for later). then multiply the absolute value with our multiplicator.
+    // If the result is too large (larger than max amount of ppl (count) ) we take the count instead (so smaller number).
+    // Then, if sum was negative, convert back to negative.
+    var neg = false;
+    if (sum < 0) neg = true;
+    sum = Math.abs(sum);
+    sum = Math.min(count, sum * SUM_MULTIPLICATOR);
+    if (neg) sum *= -1;
+
+
+    //if we have 10 participants the range of values for speedSum is [-10 ; 10] so 21 possible values and therefore 20 possible steps.
+    var stepSize = Math.floor(span / (count * 2));
+    // this value will be the amount of steps to take from the "bottom" which would be 12750 or yellow color code
+    // if count is 10 and speedSum is -4 (meaning 4 more clicked slower than faster) the new value would be 6 meaning 6*stepSize + yellow = color to display
+    var stepsToTake = sum + count;
+    printUserRatingDetails(userRequests, "theory");    //console.log("Lamp color code for Theory will be: " + '' + hue);
+    return stepsToTake * stepSize + red;
+
 };
 
 var calcTheoryColor = function (userRequests) {
@@ -95,7 +141,7 @@ var calcTheoryColor = function (userRequests) {
 
     //we use the count to determine how many users we have in the workshop
     var count = 0;
-    //the speedSum determines what color the lamp should display
+    //the theorySum determines what color the lamp should display
     var theorySum = 0;
     for (var user in userRequests) {
         if (userRequests.hasOwnProperty(user)) {
@@ -166,23 +212,26 @@ var calcSaturation = function (userRequests, type) {
     return Math.abs(saturation);
 };
 
-var printUserRatingDetails = function(userRequests, type){
-    var userCount=0,
-        neg=0,
-        nul=0,
+var printUserRatingDetails = function (userRequests, type) {
+    var userCount = 0,
+        neg = 0,
+        nul = 0,
         plus = 0;
-        var sum = 0;
+    var sum = 0;
 
     for (var user in userRequests) {
         if (userRequests.hasOwnProperty(user)) {
             userCount++;
-            switch(userRequests[user][type]){
+            switch (userRequests[user][type]) {
                 case 1:
-                    plus++;break;
+                    plus++;
+                    break;
                 case 0:
-                    nul++;break;
+                    nul++;
+                    break;
                 case -1:
-                    neg++;break;
+                    neg++;
+                    break;
             }
             sum += userRequests[user][type];
         }
@@ -199,6 +248,7 @@ module.exports = {
     setSpeedColor: setSpeedColor,
     calcTheoryColor: calcTheoryColor,
     calcSpeedColor: calcSpeedColor,
-    calcSaturation: calcSaturation
+    calcSaturation: calcSaturation,
+    calcGenericColor: calcGenericColor
 
 };

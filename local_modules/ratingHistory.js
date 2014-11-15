@@ -10,6 +10,8 @@ var log = bunyan.createLogger({
     ]
 });
 
+
+
 var logRating = function (userRequests, userWithNewRating, ratingType, newRatingValue, hueAndSat) {
 
     var count = 0;

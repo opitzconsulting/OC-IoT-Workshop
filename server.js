@@ -29,6 +29,9 @@ var userRequests = {};
 
 var AMAZON_WS_URL = "ws://ec2-54-93-187-220.eu-central-1.compute.amazonaws.com/ws/";
 
+hueControl.setAllLampsColor(0, 0);
+
+
 var sendPingToWS = function(ws){
     var ping = JSON.stringify({
         type: "ping",
@@ -115,8 +118,8 @@ var userGenericRating = function(username, rating){
         userRequests[username].theory = rating;
         userRequests[username].speed= rating;
 
-        var hue = hueControl.calcTheoryColor(userRequests);
-        var sat = hueControl.calcSaturation(userRequests, "theory");
+        var hue = hueControl.calcGenericColor(userRequests);
+        var sat = 255 /*hueControl.calcSaturation(userRequests, "theory");*/
         hueControl.setAllLampsColor(hue, sat);
 
         //for later evaluation purposes
