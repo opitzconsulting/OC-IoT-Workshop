@@ -34,7 +34,7 @@ var createUsers = function(){
     var users = [];
     for(var i = 0; i<100;i++){
         users.push("user"+i);
-        registerUser("user"+i);
+        /*registerUser("user"+i);*/
     }
     return users;
 };

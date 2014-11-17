@@ -13,9 +13,7 @@ app.use(express.bodyParser());
 
 //to not exit everything if an error is thrown
 process.on('uncaughtException', function (err) {
-    console.log('Caught exception: ' + err);
-
-    /*if(err.)*/
+    /*handleWSError(err)*/
 });
 
 
@@ -32,7 +30,7 @@ var AMAZON_WS_URL = "ws://ec2-54-93-187-220.eu-central-1.compute.amazonaws.com/w
 hueControl.setAllLampsColor(0, 0);
 
 
-var sendPingToWS = function(ws){
+var sendPingToWS = function (ws) {
     var ping = JSON.stringify({
         type: "ping",
         data: new Date().getTime()
@@ -41,10 +39,30 @@ var sendPingToWS = function(ws){
 };
 
 
-var connectWebsocket = function(){
+var connectWebsocket = function () {
     return  new WebSocket(AMAZON_WS_URL);
 };
 var ws = connectWebsocket();
+
+/*var handleWSError = function (err) {
+    if (err.code == 'ECONNRESET' || err.code == 'ECONNREFUSED' || err.code == 'ETIMEDOUT') {
+        console.log(err.code);
+        ws.close();
+
+        console.log("WS disconnect. attempting reconnect...");
+        //clearing ping, will be restarted upon open event
+        if (pingObject) clearInterval(pingObject);
+
+        ws = connectWebsocket()
+    }
+};*/
+
+ws.on('close', function(event){
+    console.log(event);
+    if (pingObject) clearInterval(pingObject);
+    console.log("disconnect. lets reconnect");
+    ws = connectWebsocket();
+})
 
 var pingObject = null;
 ws.on('open', function () {
@@ -53,17 +71,17 @@ ws.on('open', function () {
 });
 
 //for disconnects auto reconnect
-ws.on('close', function(){
-    console.log("WS disconnect. attempting reconnect...");
-    //clearing ping, will be restarted upon open event
-    if(pingObject) clearInterval(pingObject);
-    ws = connectWebsocket();
-});
+/*ws.on('close', function () {
+ console.log("WS disconnect. attempting reconnect...");
+ //clearing ping, will be restarted upon open event
+ if (pingObject) clearInterval(pingObject);
+ ws = connectWebsocket();
+ });*/
 
 ws.on('message', function (data, flags) {
     data = JSON.parse(data);
     userRegister(data.data.username);
-    switch(data.type) {
+    switch (data.type) {
         case "comment":
             userComment(data.data.username, data.data.comment);
             break;
@@ -100,13 +118,12 @@ var userComment = function (username, comment) {
 
 var lastRating = new Date();
 
-var userGenericRating = function(username, rating){
+var userGenericRating = function (username, rating) {
 
     //only accept ratings every 500ms or more
     //TODO not very pretty
     var now = new Date();
-    if(now - lastRating < 500){
-        console.log("skipped due to time");
+    if (now - lastRating < 500) {
         return;
     }
     lastRating = now;
@@ -116,10 +133,11 @@ var userGenericRating = function(username, rating){
     if (rating == 1 || rating == 0 || rating == -1) {
 
         userRequests[username].theory = rating;
-        userRequests[username].speed= rating;
+        userRequests[username].speed = rating;
 
         var hue = hueControl.calcGenericColor(userRequests);
-        var sat = 255 /*hueControl.calcSaturation(userRequests, "theory");*/
+        var sat = 255
+        /*hueControl.calcSaturation(userRequests, "theory");*/
         hueControl.setAllLampsColor(hue, sat);
 
         //for later evaluation purposes
@@ -127,7 +145,7 @@ var userGenericRating = function(username, rating){
     }
 };
 
-var userRating = function(username, rating, type){
+var userRating = function (username, rating, type) {
     if (rating == 1 || rating == 0 || rating == -1) {
 
         userRequests[username][type] = rating;
@@ -154,34 +172,34 @@ var userRating = function(username, rating, type){
 
 /* DEPRECATED
 
-var userSpeedRating = function (username, speed) {
-    console.log("user " + username + " wants speed " + speed);
-    if (speed == 1 || speed == 0 || speed == -1) {
-        userRequests[username].speed = speed;
-        var hue = hueControl.calcSpeedColor(userRequests);
-        var sat = hueControl.calcSaturation(userRequests, "speed");
-        hueControl.setSpeedColor(hue, sat);
+ var userSpeedRating = function (username, speed) {
+ console.log("user " + username + " wants speed " + speed);
+ if (speed == 1 || speed == 0 || speed == -1) {
+ userRequests[username].speed = speed;
+ var hue = hueControl.calcSpeedColor(userRequests);
+ var sat = hueControl.calcSaturation(userRequests, "speed");
+ hueControl.setSpeedColor(hue, sat);
 
-        //for later evaluation purposes
-        ratingLogger.logRating(userRequests, username, "speed", speed, {hue: hue, sat: sat});
-    }
-};
+ //for later evaluation purposes
+ ratingLogger.logRating(userRequests, username, "speed", speed, {hue: hue, sat: sat});
+ }
+ };
 
-var userTheoryRating = function (username, theory) {
-    console.log("user " + username + " wants theory " + theory);
+ var userTheoryRating = function (username, theory) {
+ console.log("user " + username + " wants theory " + theory);
 
-    if (theory == 1 || theory == 0 || theory == -1) {
+ if (theory == 1 || theory == 0 || theory == -1) {
 
-        userRequests[username].theory = theory;
+ userRequests[username].theory = theory;
 
-        var hue = hueControl.calcTheoryColor(userRequests);
-        var sat = hueControl.calcSaturation(userRequests, "theory");
-        hueControl.setTheoryColor(hue, sat);
+ var hue = hueControl.calcTheoryColor(userRequests);
+ var sat = hueControl.calcSaturation(userRequests, "theory");
+ hueControl.setTheoryColor(hue, sat);
 
-        //for later evaluation purposes
-        ratingLogger.logRating(userRequests, username, "theory", theory, {hue: hue, sat: sat});
-    }
-};*/
+ //for later evaluation purposes
+ ratingLogger.logRating(userRequests, username, "theory", theory, {hue: hue, sat: sat});
+ }
+ };*/
 
 
 // ==================================================================
