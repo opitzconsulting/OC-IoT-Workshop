@@ -37,6 +37,12 @@
     </p>
 </div>
 
+<div style="position: absolute; top: 10px; left: 10px; text-align: center">
+    <img src="images/qrcode_rating.svg" alt="" class="stretch" style="width: 140px; height: 140px;"/>
+
+    <p style="margin-top: -5px; font-weight: bold">live rating</p>
+</div>
+
 <div class="reveal">
 
 
@@ -46,7 +52,10 @@
 <section>
     <h2>Live Rating</h2>
     <img src="images/qrcode_rating.svg" alt="" class="stretch"/>
-    <p><a href="goo.gl/xnTWTz">goo.gl/xnTWTz</a></p>
+
+    <p><a href="http://goo.gl/xnTWTz">goo.gl/xnTWTz</a></p>
+
+
 </section>
 
 <section>
@@ -90,9 +99,54 @@
     </div>
 </section>
 
-<section>
+<!--<section>
     <h2>OPITZ CONSULTING</h2>
     <img src="images/oc_folie.png" alt="" class="stretch"/>
+</section>-->
+
+<section>
+    <h3>Live Rating</h3>
+    <img src="images/rating.png" class="stretch" alt=""/>
+
+    <aside class="notes">
+        <ul>
+            <li>Hier nochmal auf Live Rating eingehen. Ganz schnell: Entstand im Rahmen meiner Bachelorarbeit und heute
+                soll auch als erste Empirie aus der Praxis genutzt werden für ein Paper mit Lehrstuhl an der UzK
+            </li>
+            <li>Wenn wir Sie verlieren oder Sie gelangweilt sind, klicken sie auf den jew. Button. Sobald sie wieder
+                zufrieden sind, drücken sie wieder auf OK.
+            </li>
+            <li>Farbspektrum der Lampen spiegeln die durchschnittliche Stimmung der Teilnehmer wieder. Dabei werden
+                erste positive/negative Wertungen stärker gewichtet um klare Signale früh an die Sprecher zu senden.
+            </li>
+            <li>Wir können später genau verfolgen auf welcher Folie wir wie viele Leute "verloren" haben und durch
+                Kommentare ggf. Verbesserungen vornehmen.
+            </li>
+            <li>Soll auch an der Uni eingesetzt werden, also bitte aktiv mitmachen, haben alle was von!</li>
+
+        </ul>
+    </aside>
+</section>
+
+<section>
+
+    <h3>Idee (ursprünglich)</h3>
+    <ul>
+        <li>Automatisierung der Beleuchtung in Studenten WG's</li>
+        <li>Speziell Licht in Gemeinschaftsräumen sowie privaten Räumen anhand von Events ein/ausschalten</li>
+        <li>Events in Form von Bewohner kommt an / verlässt das Gebäude</li>
+    </ul>
+
+    <aside class="notes">
+        <ul>
+            <li>Worum geht es bei uns heute? Nunja bei IoT basteln alle, auch wir und unser Use-Case kam von mir zu
+                Hause.
+            </li>
+            <li>* Anekdote mit Flo und Licht...</li>
+            <li>Nun kann man das natürlich auch schnell auf andere Bereiche (Bürogebäude z.B.) erweitern.</li>
+        </ul>
+
+    </aside>
 </section>
 
 
@@ -120,25 +174,17 @@
         <aside class="notes">
             <ul>
                 <li>Was ist IoT. ...wow das wieder aufrollen damit wollen wir hier keinen langweilen!</li>
-                <li>Wir wollen uns eher die Entwicklung der letzten Monate ansehen und überlegen wie wir die
-                    unsichere Zukunft angehen können
-                </li>
-                <li>
-                    Wir wollten uns hier kurz fassen, um nicht direkt am Anfang Ihre aufmerksamkeit zu verlieren.
-                </li>
-                <li>
-                    Wir werden erklären wie das IoT sich entwickelt und was für Chancen und Risiken
-                    vorhanden sind.
-                </li>
-                <li>
-                    Anschließend stellen wir unseren Prototypen sowie dessen Entwicklung vor. Dabei haben wir einige
-                    Erfahrungen
-                    gemacht die wir mit Ihnen teilen möchten.
-                </li>
-                <li>
-                    Natürlich wird hier auch eine kleine Demo gegeben, hoffen wir, dass alles klappt! Abschließend
-                    wollen wir ein
-                    gemeinsames Fazit ziehen und gegebenfalls noch eine kleine Dikussionsrunde ermöglichen.
+                <li>Wir sehen 3 Stufen:
+                    <ul>
+                        <li>Was ist IoT? --> Man fängt an zu sich zu informieren und wird aktiv neugierig</li>
+                        <li>Dann: IoT Verstanden...Was für Use-Cases gibt es? Was ginge bei mir? --> Wer sich hier sieht
+                            soll uns ansprechen, wir haben einen guten Workshop, hierzu am Ende mehr
+                        </li>
+                        <li>Thema heute: Use Cases verstanden bzw wir glauben wenn man ein wenig kreativ wird findet man
+                            viele, aber welche Herausforderungen in den Architekturen, der
+                            Technik, der Governance & dem Management werden auf uns zukommen?
+                        </li>
+                    </ul>
                 </li>
 
             </ul>
@@ -214,11 +260,7 @@
                     Web auch untereinander (zwischen System)
                 </li>
 
-                <li>Was ist daran so besonders? Vergleichen wir es mit Unternehmen: M2M: 2000 Stämme, aber jeder agiert
-                    nur
-                    für sich, keine Interaktion mit anderen Entitäten. IoT: freie Wirtschaft, jeder kann mit jedem in
-                    Kontakt treten und interagieren, Handeln, tauschen. Sehen Sie das Potenzial?
-                </li>
+
             </ul>
         </aside>
     </section>
@@ -245,6 +287,13 @@
     </div>
 
     <aside class="notes">
+        <p>Noch anmerken:
+        <li>Was ist daran so besonders? Vergleichen wir es mit Unternehmen: M2M: 2000 Stämme, aber jeder agiert
+            nur
+            für sich, keine Interaktion mit anderen Entitäten. IoT: freie Wirtschaft, jeder kann mit jedem in
+            Kontakt treten und interagieren, Handeln, tauschen. Sehen Sie das Potenzial?
+        </li>
+        </p>
         <p>Also IoT = M2M + freie Interaktion über Systemgrenzen hinweg. Aber wie kommunizieren die Entitäten? -->
             Protokolle & Standards</p>
     </aside>
@@ -348,7 +397,7 @@
     <p>Lingua Franca des IoT?</p>
 
     <aside class="notes">
-        <p>[FRAGE] Vorschläge aus der Runde: Welche Protokolle / Technologien setzen sich durch?</p>
+        <p>[FRAGE] Vorschläge aus der Runde: Welche Protokolle / Technologien kennt man?</p>
 
         <p>Zigbee, IPv6LoWPan, Bluetooth, Z-Wave, HTTP, CoAP, XMPP, MQTT???</p>
     </aside>
@@ -436,24 +485,27 @@
     <img class=" stretch" src="images/coap_sequence_4.png" alt=""/>
 </section>
 -->
+<section>
+    <h3>Pointé</h3>
 
-<section data-markdown>
-    <!-- geht meiner MEinung nahc shcon fast zu weit in Richtung ARchitetkur, lieber offener gestalten -->
-    <script type="text/template">
-        ### Pointé?
+    <ul>
+        <li>Abwägen: Energieverbrauch vs. Bandbreite vs. Sendedistanz</li>
+        <li>Auch als Enterprise-Entwickler: Auseinandersetzung mit M2M Technologien</li>
+        <li>Für jeden Use-Case separat abwägen. Weg von "nur" HTTP/REST Knüppel</li>
+    </ul>
 
-        * Abwägen: Energieverbrauch vs. Bandbreite vs. Sendedistanz
-        * Auch als Enterprise-Entwickler: Auseinandersetzung mit M2M Technologien
-        * Für jeden Use-Case separat abwägen. Weg von "nur" HTTP/REST Knüppel
-        <!--* Backends müssen mit Berücksichtigung neuer Gegebenheiten entwickelt werden. Ggf. muss Java EE CoAP Daten entgegen nehmen-->
-
-        Note:
-
-        * Erstmal "eigenes" IoT aufbauen, dann sukzessive andere Services konsumieren & publizieren
-        * Umdenken. Weg von Standardknüppeln und alternativen evaluieren. Gerade technisch muss "tiefer" gedacht werden
-
-    </script>
+    <aside class="notes">
+        <ul>
+            <li>Erstmal "eigenes" IoT aufbauen, dann sukzessive andere Services konsumieren & publizieren. Man wird als
+                U Teilmodul eines größeren, eigene IT Entwicklung kein geschlossenes System!!
+            </li>
+            <li>Umdenken. Weg von Standardknüppeln und alternativen evaluieren. Gerade technisch muss "tiefer" gedacht
+                werden
+            </li>
+        </ul>
+    </aside>
 </section>
+
 </section>
 
 <!--Retrospektive IoT Trends & Kommunikationstechnologie-->
@@ -475,6 +527,11 @@
         </ul>
     </div>
 
+    <aside class="notes">
+        <p>Okay nun hat man ein Use Case, man weiß welche Sensoren man braucht, welche technischen Kommunikationswege
+            man nutzt. Welche Platform, Protokolle, Sprache, ... nutzt man? Und wessen System?</p>
+    </aside>
+
 </section>
 
 <section>
@@ -482,6 +539,10 @@
 
     <p>Open Automotive Alliance, VITAL, RERUM,CITY PULSE, IoT-I, SPRINT, Apple Smart Home Kit, Cargo2000, OpenIoT,
         IoT@Work, INDISPUTABLE KEY, PRIME</p>
+
+    <aside class="notes">
+        So und jetzt mal schauen wer ist in diesen Alliances drin?
+    </aside>
 </section>
 
 <section>
@@ -560,7 +621,8 @@ COMMISSARIAT A L ENERGIE ATOMIQUE ET AUX
 ENERGIES ALTERNATIVES
 NEC EUROPE LTD
 NXP SEMICONDUCTORS BELGIUM NV
-IBM RESEARCH GMBH
+<strong style="font-size: 2em">ORACLE</strong>
+<strong style="font-size: 2em">IBM </strong> RESEARCH GMBH
 UNIVERSITA DEGLI STUDI DI ROMA LA SAPIENZA
 CONSORZIO FERRARA RICERCHE
 CREATIVE SYSTEMS ENGINEERING (C.S.E)
@@ -1103,11 +1165,17 @@ Wyconn</p>
 
     <br/> <span class="source">(Peter Lewis : <a
         href="http://radar.oreilly.com/2014/09/in-pursuit-of-universal-iot-standards.html">http://radar.oreilly.com/2014/09/in-pursuit-of-universal-iot-standards.html</a>) </span>
+
+    <aside class="notes">
+        IPX/SPX (Novell), AppleTalk (Apple) oder NetBEUI (Microsoft Windows). Es ist eines der ersten Netzwerkprotokolle
+        (und das einzig erfolgreiche), das universell und unabhängig für alle gängigen Betriebssysteme und nahezu jede
+        denkbare Vernetzung zur Verfügung steht
+    </aside>
 </section>
 
 <section data-markdown>
     <script type="text/template">
-        Aber was tun bis sich alle geeinigt haben? Wer wartet verliert...
+        Aber was tun bis sich alle geeinigt haben? Wer wartet verpasst eventuell gute Marktchancen...
         <!--* es braucht eine Architektur, welche sich ständig ändernde Protokolle, Kommunikationswege und API's verkraften kann-->
     </script>
 </section>
@@ -1289,7 +1357,7 @@ Wyconn</p>
 
 <section data-markdown>
     <script type="text/template">
-        ### Idee (ursprünglich)
+        ### Idee
 
         * Automatisierung der Beleuchtung in Studenten WG's
         * Speziell Licht in Gemeinschaftsräumen sowie privaten Räumen anhand von Events ein/ausschalten
@@ -1297,15 +1365,24 @@ Wyconn</p>
     </script>
 </section>
 
-<section data-markdown>
-    <script type="text/template">
-        ### Konzept
 
-        * Erkennung von Smartphones im WLAN
-        * Zuordnung von Smartphones zu Benutzern
-        * Zuordnung von Geräten zu Benutzern
-        * Schaltung der Geräte in Abhängigkeit von vorgegeben Regeln (z.B. Benutzerpräsenz, Wetter, Uhrzeit, ...)
-    </script>
+<section>
+    <h3>Konzept</h3>
+
+    <ul>
+        <li>Erkennung von Smartphones im WLAN</li>
+        <li>Zuordnung von Smartphones zu Benutzern</li>
+        <li>Zuordnung von zu steuernden Geräten zu Benutzern</li>
+        <li>Schaltung der Geräte in Abhängigkeit von vorgegeben Regeln (z.B. Benutzerpräsenz, Wetter, Uhrzeit, ...)</li>
+    </ul>
+
+    <aside class="notes">
+        <ul>
+            <li>Haben sie mal ihre Kinder angesehen.. wir jungen Leute sind immer höchstens ein paar Minuten von unseren
+                Smartphones weg. Wo man Smartphone ist bin auch ich
+            </li>
+        </ul>
+    </aside>
 </section>
 
 <!--
@@ -1330,6 +1407,7 @@ Wyconn</p>
     <a href="images/architecture.png" target="_blank"><img src="images/architecture.png"
                                                            alt="prototype architecture"/></a>
 
+
 </section>
 
 <section data-markdown>
@@ -1343,7 +1421,7 @@ Wyconn</p>
     </script>
 </section>
 
-<section data-markdown data-state="alert">
+<section data-markdown> <!--data-state="alert"-->
     <script type="text/template">
         #### Beschränkungen
 
@@ -1360,8 +1438,6 @@ Wyconn</p>
         * ABER: Da so primitiv, durch starke Signalstärke Sicherstellung, dass Signale ankommen
         * 433 MHz mit geringer Energie große Reichweite (aber geringer Datendurchsatz), Wände somit weniger
         Problembereitend als bei WLan
-        * Theoretisch mit Sender & Empfänger Protokoll möglich um Datenaustausch zu ermöglichen z.B. kleine
-        Wetterstation
     </script>
 </section>
 
@@ -1501,20 +1577,28 @@ end
     </script>
 </section>
 
-<section data-markdown>
-    <script type="text/template">
-        #### Oracle CEP
 
-        * Ideal bei IoT, da eventorientiert
-        * Möglichkeiten Events und deren Relationen / Interaktionen auf Deviceebene zu filtern/puffern/dirigieren/....
+<section>
 
-        Note:
+    <h3>Oracle CEP</h3>
+    <ul>
+        <li>Ideal bei IoT, da eventorientiert</li>
+        <li>Möglichkeiten Events und deren Relationen / Interaktionen auf Deviceebene zu
+            filtern/puffern/dirigieren/....
+        </li>
+    </ul>
+    <aside class="notes">
+        <ul>
+            <li>* Intelligenz durch Eventorientierung</li>
+            <li> * Kombination von Events, Aggregation, ...
+            </li>
+            <li>* Aus Systemanalytischer perspektive einzig logische Ergänzung neben Prozessorientierung und
+                Funktionsorientierung.
+            </li>
+            <li>* Im IoT kann sehr viel über Events gefahren werden.</li>
+        </ul>
 
-        * Intelligenz durch Eventorientierung
-        * Kombination von Events, Aggregation, ...
-        * Aus Systemanalytischer perspektive einzig logische Ergänzung neben Prozessorientierung und Funktionsorientierung.
-        * Im IoT kann sehr viel über Events gefahren werden.
-    </script>
+    </aside>
 </section>
 
 
@@ -1562,7 +1646,7 @@ end
     </section>
 
 
-    <section data-state="alert">
+    <section> <!--data-state="alert"-->
         <h3>???</h3>
         <!--TODO Fragen (noch) nicht Vortragsready-->
         <ul>
@@ -1576,32 +1660,34 @@ end
     </section>
 
 
-    <section data-state="soothe">
+    <section> <!--data-state="soothe"-->
         <ul>
             <li>
                 <p>Wer sich durchsetzt kann niemand wissen</p>
 
                 <p>&#8594; <strong>Flexibilität</strong> als Kernaufgabe in der Architektur</p>
             </li>
-            <li class="fragment"><strong>Partnerschaften </strong>von Enterprise Softwarehäuser & M2M Veteranen lohnenswert</li>
-            <li class="fragment">Management: Heute schon Unternehmen auf <strong>Chancen prüfen</strong> um große <strong>Potenziale frühzeitig zu nutzen</strong>
+            <li class="fragment"><strong>Partnerschaften </strong>von Enterprise Softwarehäuser & M2M Veteranen
+                lohnenswert
+            </li>
+            <li class="fragment">Management: Heute schon Unternehmen auf <strong>Chancen prüfen</strong> um große
+                <strong>Potenziale frühzeitig zu nutzen</strong>
             </li>
         </ul>
 
         <aside class="notes">
             <ol>
-                <li>flexibilität steigern. Modular werden</li>
-                <li>Partnerschaften zwischen M2M + Softwarehäuser können sich lohnen</li>
-                <li>Wer sich durchsetzt wird sich zeigen. Wer aber denkt "den richtigen" ausgewählt zu haben und sich
-                    darauf verlässt, ein Protokoll einzusetzen, das erhalten bleibt wird statistisch gesehen verlieren.
-                    Wer aber auf Änderungen eingehen kann wird frühzeitigen erfolg aufrecht erhalten können. Hier kann
-                    viel aus den Anfangszeiten des Internets gelernt werden. Welche Anbieter haben sich gehalten, was
-                    ist mit jenen passiert, die auf die falschen gesetzt haben ohne alternativen zu ermöglichen??
+                <li>flexibilität steigern. Modularer werden, Usysteme nicht mehr nur für eigenes U wichtig. Über U
+                    grenzen hinweg. statistisch unwahrscheinlcih den richtigen zu wählen, aber davon ausgehen, dass in 5
+                    jahren eh alles nue dann agil!
                 </li>
-                <li >Technische Möglichkeiten sollten beobachtet werden. Bei konkreten Projekten dann
+                <li>Partnerschaften zwischen M2M + Softwarehäuser können sich lohnen</li>
+
+                <li>Technische Möglichkeiten sollten beobachtet werden. Bei konkreten Projekten dann
                     ausführliche Analyse
                 </li>
-                <li >Um Grundkenntnisse über Technik "unten rum" zu erlangen: Experimentieren</li>
+                <li>Um Grundkenntnisse über Technik "unten rum" zu erlangen: Experimentieren</li>
+                <li>Management sollte das U früh auf Potenziale prüfen um keine großen Opportunitäten zu verpassen. Neue Geschäftsmodelle gibt es im IoT ohne Ende. </li>
             </ol>
         </aside>
     </section>
@@ -1609,48 +1695,56 @@ end
     <section>
         <h3>Neue Geschäftsmodelle</h3>
         <img src="images/business_modell.png" alt=""/>
+
+        <aside class="notes">Und um diese Art von neuen Modellen zu finden setzen wir einen Workshop ein: </aside>
     </section>
 
+    <section> <!--data-state="soothe"-->
+        <h3>Unser Ansatz: Kreativworkshop</h3>
+        <ul>
+            <li class="fragment">Mit 12-20 Personen aus allen Bereichen gemeinsam kreativ Potenziale erkennen</li>
+            <li class="fragment">Konzepte entwickeln und tragfähige Geschäftsmodelle auswählen</li>
+            <li class="fragment">Mögliche Projektentwicklungen besprechen</li>
+        </ul>
+
+        <aside class="notes">
+            Ergebnis: Tragfähige Businessmodelle für die Geschäftsführung unter Nutzung von IoT Potenzialen
+        </aside>
+    </section>
 
 
     <section>
 
-        <div class="left-75">
+
             <div style="height: 540px">
-                <div class="left-25">
+                <!--<div class="left-25">
                     <img src="images/qrcode_vcard_Pascal.svg" alt="" style="width: 85%"/>
                 </div>
-                <div class="right-75" style="text-align: left;">
-                    <h4>Pascal Brokmeier</h4>
+                <div class="right-75" style="text-align: left;">-->
+                <h4>Pascal Brokmeier</h4>
 
-                    <p>Mobil: +49 (0) 173-727 9690</p>
+                <p>Mobil: +49 (0) 173-727 9690</p>
 
-                    <p>Email: pbr@opitz-consulting.com</p>
+                <p>Email: pbr@opitz-consulting.com</p>
 
-                    <p>Internet: www.pascalwhoop.github.io</p>
+                <p>Internet: www.pascalwhoop.github.io</p>
 
-                </div>
+                <!--</div>-->
             </div>
 
             <div style="height: 540px">
-                <div class="left-25">
+                <!--<div class="left-25">
                     <img src="images/qrcode_vcard_Dominik.svg" style="width: 85%"/>
                 </div>
-                <div class="right-75" style="text-align: left;">
-                    <h4>Dominik Bial</h4>
+                <div class="right-75" style="text-align: left;">-->
+                <h4>Dominik Bial</h4>
 
-                    <p>Mobil: +49 (0) 173-727 9023</p>
+                <p>Mobil: +49 (0) 173-727 9023</p>
 
-                    <p>Email: dominik.bial@opitz-consulting.com</p>
+                <p>Email: dominik.bial@opitz-consulting.com</p>
 
-                </div>
+                <!--</div>-->
             </div>
-        </div>
-        <div class="left-25">
-            <img src="images/oc_iot_qr.svg" alt=""/>
-
-            <p style="font-size: 0.6em"><a href="www.opitz-consulting.com/iot">www.opitz-consulting.com/iot</a></p>
-        </div>
 
     </section>
 
@@ -1733,7 +1827,7 @@ end
     <h2>Backup</h2>
 </section>
 
-<section data-state="soothe">
+<section>  <!--data-state="soothe"-->
     <h3>Unser Ansatz: Kreativworkshop</h3>
     <ul>
         <li class="fragment">Mit 12-20 Personen aus allen Bereichen gemeinsam kreativ Potenziale erkennen</li>
@@ -1757,9 +1851,8 @@ end
 </section>
 
 
-
 <section>
-    <section data-markdown data-state="alert">
+    <section data-markdown> <!--data-state="alert"-->
         <script type="text/template">
             ## Szenario Devicemanagement
 
@@ -1800,7 +1893,7 @@ end
     </section>
 
 
-    <section data-state="soothe">
+    <section> <!--data-state="soothe"-->
         <div class="left">
             <ul>
                 <li>Wer hier sein Netzwerk gut managed kann Änderungen entspannter entgegen blicken</li>
@@ -1852,7 +1945,7 @@ end
 </section>
 
 <section>
-    <section><h3>Prototyp bachup</h3>       </section>
+    <section><h3>Prototyp Backup</h3></section>
 
 
     <section>

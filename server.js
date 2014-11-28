@@ -26,6 +26,7 @@ var userRequests = {};
 
 
 var AMAZON_WS_URL = "ws://ec2-54-93-187-220.eu-central-1.compute.amazonaws.com/ws/";
+var TEST_URL = "ws://localhost:8888";
 
 hueControl.setAllLampsColor(0, 0);
 

@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 
+
 //returns an array of our logfiles. The array contains objects of form: {filename: "<filename>"}
 var getAllLogFiles = function (callback) {
     fs.readdir("log/", function (err, files) {

@@ -1,24 +1,41 @@
 <div>
 
 
+    <h1>Hier können die Logfiles ausgewertet werden</h1>
 
-   <h1>Hier können die Logfiles ausgewertet werden</h1>
-
-    <select id="" ng-model="logSelected" ng-change="logFileSelected(logSelected)" ng-options="log.filename for log in logFileNames">
+    <select id="" ng-model="logSelected" ng-change="logFileSelected(logSelected)"
+            ng-options="log.filename for log in logFileNames">
         <option value="">-- Pick Logfile --</option>
     </select>
 
 
     <div ng-show="logSelected">
         <h3>Theorielampenauswertung</h3>
-        <div>Diese Grafik zeigt den Verlauf des Theorie vs. Praxisempfindes der Teilnehmer. Dabei reichen die Werte maximal von 46920 (blaue Lampe, zu wenig Theorie) bis 65280 (rote Lampe, zu wenig Übungen).</div>
+
+        <div>Diese Grafik zeigt den Verlauf des Theorie vs. Praxisempfindes der Teilnehmer. Dabei reichen die Werte
+            maximal von 0 (rote Lampe, zu schnell/kompliziert) bis 46920 (blaue Lampe, zu langsam/einfach).
+        </div>
         <div id="theory_chart" style="width: 100%; height: 400px;"></div>
         <h3>Geschwindigkeitslampenauswertung</h3>
-        <div>Diese Grafik zeigt den Verlauf  des Geschwindigkeitsempfindens der Teilnehmer. Dabei reichen die Werte maximal von 0 (rote Lampe, zu schnell) bis 25500(grüne Lampe, zu langsam).</div>
+
+        <div>Diese Grafik zeigt den Verlauf des Geschwindigkeitsempfindens der Teilnehmer. Dabei reichen die Werte
+            maximal von 0 (rote Lampe, zu schnell) bis 25500(grüne Lampe, zu langsam).
+        </div>
         <div id="speed_chart" style="width: 100%; height: 400px;"></div>
 
         <h3>Rohdatenübersicht:</h3>
         <span>Hier sind alle Loggingeinträge einzusehen. Kommentare, Folienwechsel, Kaffepausen und Lampenfarbenänderungen werden hier eingetragen.</span>
+
+        <br/>
+        <form action="" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="filterBox" class="col-sm-2 control-label">Filter: </label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="filter" class="form-control" id="filterBox"/>
+                </div>
+            </div>
+        </form>
+        {{data.length}}
 
         <table class="table table-striped">
             <tr>
@@ -29,8 +46,7 @@
             </tr>
 
 
-
-            <tr ng-repeat="logEntry in logFileSelected | orderBy:predicate:reverse">
+            <tr ng-repeat="logEntry in data =  (logFileSelected | orderBy:predicate:reverse | filter:filter)">
                 <td>
                     <!--speed/theory rating-->
                     <div ng-if="logEntry.type == 'userRating'">{{logEntry.user}}</div>
@@ -49,17 +65,21 @@
 
                 <td>
                     <!--speed/theory rating-->
-                    <div ng-if="logEntry.type == 'userRating'">Thema: {{logEntry.ratingType}} -- Neuer Wert: {{logEntry.newRatingValue}} -- Gesamtwertung: {{logEntry.currentRatingAverage}} (Benutzer: {{logEntry.userCount}})</div>
+                    <div ng-if="logEntry.type == 'userRating'">Thema: {{logEntry.ratingType}} -- Neuer Wert:
+                        {{logEntry.newRatingValue}} -- Gesamtwertung: {{logEntry.currentRatingAverage}} (Benutzer:
+                        {{logEntry.userCount}})
+                    </div>
                     <!--comments-->
                     <div ng-if="logEntry.comment">{{logEntry.comment}}</div>
                     <!--slideChange-->
-                    <div ng-if="logEntry.type == 'slideChange'">Block: {{logEntry.sectionNumber}} - XY: {{logEntry.x}} {{logEntry.y}}</div>
+                    <div ng-if="logEntry.type == 'slideChange'">Block: {{logEntry.sectionNumber}} - XY: {{logEntry.x}}
+                        {{logEntry.y}}
+                    </div>
                 </td>
             </tr>
         </table>
 
     </div>
-
 
 
 </div>

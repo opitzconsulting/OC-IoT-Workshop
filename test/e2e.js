@@ -3,6 +3,7 @@ var Client = require('node-rest-client').Client;
 client = new Client();
 
 var AMAZON_PROXY_URL = "http://ec2-54-93-187-220.eu-central-1.compute.amazonaws.com";
+//var AMAZON_PROXY_URL = "http://localhost:8080";
 var API_URI = "/api/user/";
 
 
@@ -34,7 +35,7 @@ var createUsers = function(){
     var users = [];
     for(var i = 0; i<100;i++){
         users.push("user"+i);
-        /*registerUser("user"+i);*/
+        registerUser("user"+i);
     }
     return users;
 };
